@@ -28,9 +28,8 @@ void sobre(void){
     printf("------------------------------------------------------------------------\n");
     printf("------------------Gestao de hoteis e pousadas---------------------------\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                         UFRN | Caicó                                 |\n");
+    printf("|                         UFRN | Caico                                 |\n");
     printf("|              Disciplina DCT1106 -- Programacao                       |\n");
-    printf("|       Sistema de gestão para uma manicure e pedicure                 |\n");
     printf("|                   Dev: Beatriz Vitoria da Costa                      |\n");
     printf("|              Professor: Flavius Gorgônio                             |\n");
     printf("------------------------------------------------------------------------\n");
