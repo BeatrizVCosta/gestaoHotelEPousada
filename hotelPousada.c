@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
     void menu_principal(void);
     void menu_clientes(void);
@@ -15,6 +16,7 @@ int main(void){
     return 0;
 }
 void menu_principal(void){
+    system("clear||cls");
     printf("------------------------------\n");
     printf("-------------MENU-------------\n");
     printf("------------------------------\n");
@@ -23,22 +25,28 @@ void menu_principal(void){
     printf("|       2- Funcionarios       |\n");
     printf("|       3- Quartos            |\n");
     printf("-------------------------------\n");
+    printf("Aperte qualquer tecla para continuar...\n");
+    getchar();
 }
 void sobre(void){
+    system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("------------------Gestao de hoteis e pousadas---------------------------\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                         UFRN | Caico                                 |\n");
     printf("|              Disciplina DCT1106 -- Programacao                       |\n");
     printf("|                   Dev: Beatriz Vitoria da Costa                      |\n");
-    printf("|              Professor: Flavius Gorgônio                             |\n");
+    printf("|              Professor: Flavius Gorgonio                             |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|              Sistema de gestao para hoteis e pousadas                |\n ");
-    printf("| Para ser utilizado no gerenciamento de clientes,funcionarios e quartos do estabelecimento.|\n");
-    printf("|              PROJETO EM DESENVOLVIMENTO                             |\n");
+    printf("|   Sistema de gestao para hoteis e pousadas, para ser utilizado no    |\n ");
+    printf("| gerenciamento de clientes,funcionarios e quartos do estabelecimento. |\n");
+    printf("|              PROJETO EM DESENVOLVIMENTO                              |\n");
     printf("-------------------------------------------------------------------------\n");
+    printf("Aperte qualquer tecla para continuar...\n");
+    getchar();
 }
 void menu_clientes(void){
+    system("clear||cls");
     printf("------------------------------\n");
     printf("----------CLIENTES------------\n");
     printf("------------------------------\n");
@@ -48,8 +56,11 @@ void menu_clientes(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
+    printf("Aperte qualquer tecla para continuar...\n");
+    getchar();
 }
 void menu_funcionarios(void){
+    system("clear||cls");
     printf("------------------------------\n");
     printf("---------FUNCIONARIOS---------\n");
     printf("------------------------------\n");
@@ -59,8 +70,11 @@ void menu_funcionarios(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
+    printf("Aperte qualquer tecla para continuar...\n");
+    getchar();
 }
 void menu_quartos(void){
+    system("clear||cls");
     printf("------------------------------\n");
     printf("----------QUARTOS-------------\n");
     printf("------------------------------\n");
@@ -70,4 +84,6 @@ void menu_quartos(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
+    printf("Aperte qualquer tecla para continuar...\n");
+    getchar();
 }
