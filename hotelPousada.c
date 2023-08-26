@@ -25,8 +25,7 @@ void menu_principal(void){
     printf("|       2- Funcionarios       |\n");
     printf("|       3- Quartos            |\n");
     printf("-------------------------------\n");
-    printf("Aperte qualquer tecla para continuar...\n");
-    getchar();
+    system("PAUSE");
 }
 void sobre(void){
     system("clear||cls");
@@ -42,8 +41,7 @@ void sobre(void){
     printf("| gerenciamento de clientes,funcionarios e quartos do estabelecimento. |\n");
     printf("|              PROJETO EM DESENVOLVIMENTO                              |\n");
     printf("-------------------------------------------------------------------------\n");
-    printf("Aperte qualquer tecla para continuar...\n");
-    getchar();
+    system("PAUSE");
 }
 void menu_clientes(void){
     system("clear||cls");
@@ -56,8 +54,7 @@ void menu_clientes(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
-    printf("Aperte qualquer tecla para continuar...\n");
-    getchar();
+    system("PAUSE");
 }
 void menu_funcionarios(void){
     system("clear||cls");
@@ -70,8 +67,7 @@ void menu_funcionarios(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
-    printf("Aperte qualquer tecla para continuar...\n");
-    getchar();
+    system("PAUSE");
 }
 void menu_quartos(void){
     system("clear||cls");
@@ -84,6 +80,5 @@ void menu_quartos(void){
     printf("|       3- Cadastrar          |\n");
     printf("|       3- Remover            |\n");
     printf("-------------------------------\n");
-    printf("Aperte qualquer tecla para continuar...\n");
-    getchar();
+    system("PAUSE");
 }
