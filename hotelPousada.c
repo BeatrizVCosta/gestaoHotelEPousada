@@ -20,6 +20,10 @@
     void atualizar_quartos(void);
     void atualizar_clientes(void);
     void relatorio(void);
+    void quartos_disponiveis(void); 
+    void relatorio_geral(void);
+    void check_in(void);
+    void check_out(void);
 
 int main(void){
     setlocale(LC_ALL, "Portuguese_Brazil");
@@ -41,6 +45,10 @@ int main(void){
     atualizar_quartos();
     atualizar_clientes();
     relatorio();
+    quartos_disponiveis(); 
+    relatorio_geral();
+    check_in();
+    check_out();
     return 0;
 }
 void menu_principal(void){
@@ -279,10 +287,48 @@ void relatorio(void){
     printf("|                         RELATÓRIO                                    |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
-    printf("|                         1- Consultar quartos disponiveis             |\n");
+    printf("|                         1- Consultar quartos disponíveis             |\n");
     printf("|                         2- Check-in                                  |\n");
     printf("|                         3- Check-out                                 |\n");
     printf("|                         4- Relatório Geral                           |\n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
+
+void quartos_disponiveis(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       QUARTOS DISPONÍVEIS                                |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+void check_in(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                             CHECK-IN                                 |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+void check_out(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                            CHECK-OUT                                 |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+void relatorio_geral(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                        RELATÓRIO GERAL                               |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+
