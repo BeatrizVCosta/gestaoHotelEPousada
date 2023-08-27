@@ -19,6 +19,7 @@
     void atualizar_funcionarios(void);
     void atualizar_quartos(void);
     void atualizar_clientes(void);
+    void relatorio(void);
 
 int main(void){
     setlocale(LC_ALL, "Portuguese_Brazil");
@@ -39,6 +40,7 @@ int main(void){
     atualizar_funcionarios();
     atualizar_quartos();
     atualizar_clientes();
+    relatorio();
     return 0;
 }
 void menu_principal(void){
@@ -51,7 +53,9 @@ void menu_principal(void){
     printf("|                         1- Clientes                                  |\n");
     printf("|                         2- Funcionários                              |\n");
     printf("|                         3- Quartos                                   |\n");
-    printf("|                         4- Sobre                                     |\n");
+    printf("|                         4- Preços                                    |\n");
+    printf("|                         5- Relatório                                 |\n");
+    printf("|                         6- Sobre                                     |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op);
@@ -135,6 +139,7 @@ void cadastrar_funcionarios(void){
     printf("\t\t\tDigite o CPF:  \n");
     printf("\t\t\tDigite o nome:  \n");
     printf("\t\t\tDigite a data de nascimento:  \n");
+    printf("\t\t\tDigite o cargo do funcionário:  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
@@ -145,10 +150,11 @@ void cadastrar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o número do quarto:  \n");
-    printf("\t\t\tDigite a quantidade de camas:  \n");
-    printf("\t\t\tDigite se possui banheiro:  \n");
-    printf("\t\t\tDigite possui frigobar:  \n");
+    printf("\t\t\tDigite quantas pessoas serão:  \n");
+    printf("\t\t\tDigite o CPF de cada um:  \n");
+    printf("\t\t\tDigite o nome de cada um:  \n");
+    printf("\t\t\tDigite se vão incluir o café da manhã:  \n");
+    printf("\t\t\tDigite se vão incluir os serviços de quarto:  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
@@ -162,7 +168,9 @@ void cadastrar_quartos(void){
     printf("\t\t\tDigite o número do quarto:  \n");
     printf("\t\t\tDigite a quantidade de camas:  \n");
     printf("\t\t\tDigite se possui banheiro:  \n");
-    printf("\t\t\tDigite possui frigobar:  \n");
+    printf("\t\t\tDigite o status do quarto:  \n");
+    printf("\t\t\tDigite o valor do quarto per noite:  \n");
+    printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
@@ -235,10 +243,10 @@ void atualizar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o status do funcionário:  \n");
     // atualizar se ele ainda trabalha para a empresa ou não
+    printf("\t\t\tDigite o novo cargo do funcionário  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-
 void atualizar_quartos(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
@@ -247,11 +255,11 @@ void atualizar_quartos(void){
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite a quantidade de camas:  \n");
-    printf("\t\t\tDigite possui frigobar:  \n");
+    printf("\t\t\tDigite o valor do quarto per noite:  \n");
+    printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-
 void atualizar_clientes(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
@@ -261,6 +269,20 @@ void atualizar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o status do cliente:  \n");
     // colocar se o cliente foi banido do hotel
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+
+void relatorio(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         RELATÓRIO                                    |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         0- Sair                                      |\n");
+    printf("|                         1- Consultar quartos disponiveis             |\n");
+    printf("|                         2- Check-in                                  |\n");
+    printf("|                         3- Check-out                                 |\n");
+    printf("|                         4- Relatório Geral                           |\n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
