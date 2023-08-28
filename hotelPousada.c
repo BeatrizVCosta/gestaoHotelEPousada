@@ -2,7 +2,7 @@
 #include <stdlib.h>/*Para o system */
 #include <locale.h> /* Para a acentuação*/
 
-    void menu_principal(void);
+    char menu_principal();
     void menu_clientes(void);
     void menu_funcionarios(void);
     void menu_quartos(void);
@@ -24,34 +24,35 @@
     void relatorio_geral(void);
     void check_in(void);
     void check_out(void);
+    void precos(void);
 
 int main(void){
     setlocale(LC_ALL, "Portuguese_Brazil");
-    menu_principal();
-    sobre();
-    menu_clientes();
-    menu_funcionarios();
-    menu_quartos();
-    cadastrar_funcionarios();
-    cadastrar_quartos();
-    cadastrar_clientes();
-    listar_funcionarios();
-    listar_quartos();
-    listar_clientes();
-    procurar_funcionarios();
-    procurar_quartos();
-    procurar_clientes();
-    atualizar_funcionarios();
-    atualizar_quartos();
-    atualizar_clientes();
-    relatorio();
-    quartos_disponiveis(); 
-    relatorio_geral();
-    check_in();
-    check_out();
+    char op = menu_principal();
+    while (op!='0'){
+        op = menu_principal();
+        if (op=='1'){
+            menu_clientes();
+        }else if(op=='2'){
+            menu_funcionarios();
+        }else if(op=='3'){
+            menu_quartos();
+        }else if(op=='4'){
+            precos();
+        }else if(op=='5'){
+            relatorio();
+        }else if(op=='6'){
+            sobre();
+        }else if(op=='0'){
+            printf("FIM");
+        }else {
+            printf("Opção inválida!");
+        }
+
+    }
     return 0;
-}
-void menu_principal(void){
+} 
+char menu_principal(){
     char op;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
@@ -68,7 +69,8 @@ void menu_principal(void){
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op);
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    return op;
+
 }
 void sobre(void){
     system("clear||cls");
@@ -280,7 +282,6 @@ void atualizar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-
 void relatorio(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
@@ -294,7 +295,6 @@ void relatorio(void){
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-
 void quartos_disponiveis(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
@@ -326,6 +326,15 @@ void relatorio_geral(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                        RELATÓRIO GERAL                               |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    system("PAUSE");
+}
+void precos(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                        TABELA DE PREÇOS                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
