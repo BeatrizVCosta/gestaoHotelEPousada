@@ -1,11 +1,11 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
-#include <locale.h> /* Para a acentuação*/
+#include <locale.h> /* Para a acentuaï¿½ï¿½o*/
 
     char menu_principal();
-    void menu_clientes(void);
-    void menu_funcionarios(void);
-    void menu_quartos(void);
+    char menu_clientes();
+    char menu_funcionarios();
+    char menu_quartos();
     void sobre(void);
     void cadastrar_funcionarios(void);
     void cadastrar_quartos(void);
@@ -19,7 +19,7 @@
     void atualizar_funcionarios(void);
     void atualizar_quartos(void);
     void atualizar_clientes(void);
-    void relatorio(void);
+    char relatorio();
     void quartos_disponiveis(void); 
     void relatorio_geral(void);
     void check_in(void);
@@ -32,15 +32,71 @@ int main(void){
     while (op!='0'){
         op = menu_principal();
         if (op=='1'){
-            menu_clientes();
+            char op2 = menu_clientes();
+            while (op2!='0'){
+                op2 = menu_clientes();
+                if (op2=='1'){
+                    cadastrar_clientes();
+                }else if(op2=='2'){
+                    listar_clientes();
+                }else if(op2=='3'){
+                    procurar_clientes();
+                }else if(op2=='4'){
+                    atualizar_clientes();
+                }else{
+                    printf("Opção inválida!");
+                }
+            }   
         }else if(op=='2'){
-            menu_funcionarios();
+            char op2 = menu_funcionarios();
+            while (op2!='0'){
+                op2 = menu_funcionarios();
+                if (op2=='1'){
+                    cadastrar_funcionarios();
+                }else if(op2=='2'){
+                    listar_funcionarios();
+                }else if(op2=='3'){
+                    procurar_funcionarios();
+                }else if(op2=='4'){
+                    atualizar_funcionarios();
+                }else{
+                    printf("Opção inválida!");
+                }
+            } 
         }else if(op=='3'){
-            menu_quartos();
+            char op2 = menu_quartos();
+            while (op2!='0'){
+                op2 = menu_quartos();
+                if (op2=='1'){
+                    cadastrar_quartos();
+                }else if(op2=='2'){
+                    listar_quartos();
+                }else if(op2=='3'){
+                    procurar_quartos();
+                }else if(op2=='4'){
+                    atualizar_quartos();
+                }else{
+                    printf("Opção inválida!");
+                }
+            }
         }else if(op=='4'){
             precos();
         }else if(op=='5'){
-            relatorio();
+            char op2 = relatorio();
+            while (op2!='0'){
+                op2 = relatorio();
+                if (op2=='1'){
+                    quartos_disponiveis();
+                }else if(op2=='2'){
+                    check_in();
+                }else if(op2=='3'){
+                    check_out();
+                }else if(op2=='4'){
+                    relatorio_geral();
+                }else{
+                    printf("Opção inválida!");
+                }
+            }
         }else if(op=='6'){
             sobre();
         }else if(op=='0'){
@@ -88,8 +144,8 @@ void sobre(void){
     printf("-------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-void menu_clientes(void){
-    char op;
+char menu_clientes(){
+    char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                             CLIENTES                                 |\n");
@@ -101,12 +157,12 @@ void menu_clientes(void){
     printf("|                         4- Atualizar                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
-    scanf("%c", &op);
+    scanf("%c", &op2);
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    return op2;
 }
-void menu_funcionarios(void){
-    char op;
+char menu_funcionarios(){
+    char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                           FUNCIONÁRIOS                               |\n");
@@ -118,12 +174,12 @@ void menu_funcionarios(void){
     printf("|                         4- Atualizar                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
-    scanf("%c", &op);
+    scanf("%c", &op2);
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    return op2;
 }
-void menu_quartos(void){
-    char op;
+char menu_quartos(){
+    char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                             QUARTOS                                  |\n");
@@ -135,9 +191,9 @@ void menu_quartos(void){
     printf("|                         4- Atualizar                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
-    scanf("%c", &op);
+    scanf("%c", &op2);
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    return op2;
 }
 void cadastrar_funcionarios(void){
     system("clear||cls");
@@ -160,7 +216,7 @@ void cadastrar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite quantas pessoas serão:  \n");
+    printf("\t\t\tDigite quantas pessoas por quarto:  \n");
     printf("\t\t\tDigite o CPF de cada um:  \n");
     printf("\t\t\tDigite o nome de cada um:  \n");
     printf("\t\t\tDigite se vão incluir o café da manhã:  \n");
@@ -252,7 +308,7 @@ void atualizar_funcionarios(void){
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o status do funcionário:  \n");
-    // atualizar se ele ainda trabalha para a empresa ou não
+    // atualizar se ele ainda trabalha para a empresa ou nao
     printf("\t\t\tDigite o novo cargo do funcionário  \n");
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
@@ -282,7 +338,8 @@ void atualizar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     system("PAUSE");
 }
-void relatorio(void){
+char relatorio(){
+    char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                         RELATÓRIO                                    |\n");
@@ -293,7 +350,10 @@ void relatorio(void){
     printf("|                         3- Check-out                                 |\n");
     printf("|                         4- Relatório Geral                           |\n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("\t\t\tDigite sua escolha:  ");
+    scanf("%c", &op2);
+    printf("------------------------------------------------------------------------\n");
+    return op2;
 }
 void quartos_disponiveis(void){
     system("clear||cls");
