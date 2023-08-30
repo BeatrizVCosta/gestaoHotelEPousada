@@ -1,6 +1,6 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
-#include <locale.h> /* Para a acentuaï¿½ï¿½o*/
+#include <locale.h> /* Para a acentuação*/
 
     char menu_principal();
     char menu_clientes();
@@ -142,7 +142,8 @@ void sobre(void){
     printf("| gerenciamento de clientes,funcionários e quartos do estabelecimento. |\n");
     printf("|                     PROJETO EM DESENVOLVIMENTO                       |\n");
     printf("-------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 char menu_clientes(){
     char op2;
@@ -207,7 +208,8 @@ void cadastrar_funcionarios(void){
     printf("\t\t\tDigite a data de nascimento:  \n");
     printf("\t\t\tDigite o cargo do funcionário:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void cadastrar_clientes(void){
     system("clear||cls");
@@ -222,7 +224,8 @@ void cadastrar_clientes(void){
     printf("\t\t\tDigite se vão incluir o café da manhã:  \n");
     printf("\t\t\tDigite se vão incluir os serviços de quarto:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void cadastrar_quartos(void){
     system("clear||cls");
@@ -238,7 +241,8 @@ void cadastrar_quartos(void){
     printf("\t\t\tDigite o valor do quarto per noite:  \n");
     printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void procurar_funcionarios(void){
     system("clear||cls");
@@ -249,7 +253,8 @@ void procurar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o nome do funcionário:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void procurar_clientes(void){
     system("clear||cls");
@@ -260,7 +265,8 @@ void procurar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o nome do cliente:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void procurar_quartos(void){
     system("clear||cls");
@@ -271,7 +277,8 @@ void procurar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o número do quarto:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void listar_funcionarios(void){
     system("clear||cls");
@@ -280,7 +287,8 @@ void listar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void listar_clientes(void){
     system("clear||cls");
@@ -289,7 +297,8 @@ void listar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void listar_quartos(void){
     system("clear||cls");
@@ -297,8 +306,8 @@ void listar_quartos(void){
     printf("|                      TODOS OS QUARTOS                                |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
-    printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void atualizar_funcionarios(void){
     system("clear||cls");
@@ -311,7 +320,8 @@ void atualizar_funcionarios(void){
     // atualizar se ele ainda trabalha para a empresa ou nao
     printf("\t\t\tDigite o novo cargo do funcionário  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void atualizar_quartos(void){
     system("clear||cls");
@@ -324,7 +334,8 @@ void atualizar_quartos(void){
     printf("\t\t\tDigite o valor do quarto per noite:  \n");
     printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void atualizar_clientes(void){
     system("clear||cls");
@@ -336,7 +347,8 @@ void atualizar_clientes(void){
     printf("\t\t\tDigite o status do cliente:  \n");
     // colocar se o cliente foi banido do hotel
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 char relatorio(){
     char op2;
@@ -362,7 +374,8 @@ void quartos_disponiveis(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void check_in(void){
     system("clear||cls");
@@ -371,7 +384,8 @@ void check_in(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void check_out(void){
     system("clear||cls");
@@ -380,7 +394,8 @@ void check_out(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void relatorio_geral(void){
     system("clear||cls");
@@ -389,7 +404,8 @@ void relatorio_geral(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 void precos(void){
     system("clear||cls");
@@ -398,6 +414,7 @@ void precos(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
-    system("PAUSE");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
 }
 
