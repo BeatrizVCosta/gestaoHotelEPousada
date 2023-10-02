@@ -13,6 +13,7 @@ char menu_funcionarios(){
     printf("|                         2- Listar                                    |\n");
     printf("|                         3- Procurar                                  |\n");
     printf("|                         4- Atualizar                                 |\n");
+    printf("|                         5- Deletar                                   |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);

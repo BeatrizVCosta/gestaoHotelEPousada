@@ -4,6 +4,7 @@
 #include "funcionario.h"
 #include "relatorio.h"
 #include "quartos.h"
+#include "reservas.h"
     char menu_principal();
     void sobre(void);
 
@@ -59,24 +60,34 @@ int main(void){
                 }
             }
         }else if(op=='4'){
+            char op2 = reservas();
+            while (op2!='0'){
+                op2 = reservas();
+                if (op2=='1'){
+                    cadastrar_reserva();
+                }else if(op2=='2'){
+                    check_in();
+                }else if(op2=='3'){
+                    check_out();
+                }else{
+                    printf("Opcao invalida!");
+                }
+            }
+        }else if(op=='5'){
             char op2 = relatorio();
             while (op2!='0'){
                 op2 = relatorio();
                 if (op2=='1'){
                     quartos_disponiveis();
                 }else if(op2=='2'){
-                    check_in();
-                }else if(op2=='3'){
-                    check_out();
-                }else if(op2=='4'){
                     precos();
-                }else if(op2=='5'){
+                }else if(op2=='3'){
                     relatorio_geral();
                 }else{
                     printf("Opcao invalida!");
                 }
             }
-        }else if(op=='5'){
+        }else if(op=='6'){
             sobre();
         }else if(op=='0'){
             printf("FIM");
@@ -97,8 +108,9 @@ char menu_principal(){
     printf("|                         1- Clientes                                  |\n");
     printf("|                         2- Funcionarios                              |\n");
     printf("|                         3- Quartos                                   |\n");
-    printf("|                         4- Relatorio                                 |\n");
-    printf("|                         5- Sobre                                     |\n");
+    printf("|                         4- Reservas                                  |\n");
+    printf("|                         5- Relatorio                                 |\n");
+    printf("|                         6- Sobre                                     |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op);

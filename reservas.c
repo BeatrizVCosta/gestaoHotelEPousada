@@ -1,51 +1,51 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
-#include "relatorio.h"
+#include "reservas.h"
 
-char relatorio(){
+char reservas(){
     char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                         RELATÓRIO                                    |\n");
+    printf("|                          RESERVAS                                    |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
-    printf("|                         1- Consultar quartos disponiveis             |\n");
-    printf("|                         2- Tabela de precos                          |\n");
-    printf("|                         3- Relatorio Geral                           |\n");
+    printf("|                         1- Cadastrar nova reserva                    |\n");
+    printf("|                         2- Check-in                                  |\n");
+    printf("|                         3- Check-out                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
     printf("------------------------------------------------------------------------\n");
     return op2;
 }
-void quartos_disponiveis(void){
+void cadastrar_reserva(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                       QUARTOS DISPONÍVEIS                                |\n");
+    printf("|                        CADASTRAR RESERVA                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
-void relatorio_geral(void){
+void check_in(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                        RELATÓRIO GERAL                               |\n");
+    printf("|                             CHECK-IN                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
-    // mostrar todos os check-in e check-out do dia, mês ou ano
+    // fazer check in
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
-void precos(void){
+void check_out(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                        TABELA DE PREÇOS                              |\n");
+    printf("|                            CHECK-OUT                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
-    // mostrar o preço de todos os tipos de quartos
+    // fazer check out
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();

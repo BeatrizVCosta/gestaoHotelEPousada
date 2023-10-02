@@ -12,7 +12,8 @@ char menu_clientes(){
     printf("|                         1- Cadastrar                                 |\n");
     printf("|                         2- Listar                                    |\n");
     printf("|                         3- Procurar                                  |\n");
-    printf("|                         4- Atualizar                                 |\n");
+    printf("|                         4- Atualizar                                 |\n");   
+    printf("|                         5- Deletar                                   |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -26,11 +27,8 @@ void cadastrar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite quantas pessoas por quarto:  \n");
-    printf("\t\t\tDigite o CPF de cada um:  \n");
-    printf("\t\t\tDigite o nome de cada um:  \n");
-    printf("\t\t\tDigite se vão incluir o café da manhã:  \n");
-    printf("\t\t\tDigite se vão incluir os serviços de quarto:  \n");
+    printf("\t\t\tDigite o CPF:  \n");
+    printf("\t\t\tDigite o nome:  \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
