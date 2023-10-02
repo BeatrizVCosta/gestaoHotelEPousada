@@ -1,6 +1,5 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
-#include <locale.h> /* Para a acentuação*/
 #include "cliente.h"
 #include "funcionario.h"
 #include "relatorio.h"
@@ -9,7 +8,6 @@
     void sobre(void);
 
 int main(void){
-    setlocale(LC_ALL, "Portuguese_Brazil");
     char op = menu_principal();
     while (op!='0'){
         if (op=='1'){
@@ -25,7 +23,7 @@ int main(void){
                 }else if(op2=='4'){
                     atualizar_clientes();
                 }else{
-                    printf("Opção inválida!");
+                    printf("Opcao invalida!");
                 }
             }   
         }else if(op=='2'){
@@ -41,7 +39,7 @@ int main(void){
                 }else if(op2=='4'){
                     atualizar_funcionarios();
                 }else{
-                    printf("Opção inválida!");
+                    printf("Opcao invalida!");
                 }
             } 
         }else if(op=='3'){
@@ -57,7 +55,7 @@ int main(void){
                 }else if(op2=='4'){
                     atualizar_quartos();
                 }else{
-                    printf("Opção inválida!");
+                    printf("Opcao invalida!");
                 }
             }
         }else if(op=='4'){
@@ -75,7 +73,7 @@ int main(void){
                 }else if(op2=='5'){
                     relatorio_geral();
                 }else{
-                    printf("Opção inválida!");
+                    printf("Opcao invalida!");
                 }
             }
         }else if(op=='5'){
@@ -83,7 +81,7 @@ int main(void){
         }else if(op=='0'){
             printf("FIM");
         }else {
-            printf("Opção inválida!");
+            printf("Opcao invalida!");
         }
     op = menu_principal();
     }
@@ -97,9 +95,9 @@ char menu_principal(){
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Clientes                                  |\n");
-    printf("|                         2- Funcionários                              |\n");
+    printf("|                         2- Funcionarios                              |\n");
     printf("|                         3- Quartos                                   |\n");
-    printf("|                         4- Relatório                                 |\n");
+    printf("|                         4- Relatorio                                 |\n");
     printf("|                         5- Sobre                                     |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
@@ -111,15 +109,15 @@ char menu_principal(){
 void sobre(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                   Gestão de hotéis e pousadas                        |\n");
+    printf("|                   Gestao de hoteis e pousadas                        |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                         UFRN | Caicó                                 |\n");
-    printf("|              Disciplina DCT1106 -- Programação                       |\n");
-    printf("|                   Dev: Beatriz Vitória da Costa                      |\n");
-    printf("|              Professor: Flavius Gorgônio                             |\n");
+    printf("|                         UFRN | Caico                                 |\n");
+    printf("|              Disciplina DCT1106 -- Programacao                       |\n");
+    printf("|                   Dev: Beatriz Vitoria da Costa                      |\n");
+    printf("|              Professor: Flavius Gorgonio                             |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|   Sistema de gestão para hotéis e pousadas, para ser utilizado no    |\n");
-    printf("| gerenciamento de clientes,funcionários e quartos do estabelecimento. |\n");
+    printf("|   Sistema de gestao para hoteis e pousadas, para ser utilizado no    |\n");
+    printf("| gerenciamento de clientes,funcionarios e quartos do estabelecimento. |\n");
     printf("|                     PROJETO EM DESENVOLVIMENTO                       |\n");
     printf("-------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
