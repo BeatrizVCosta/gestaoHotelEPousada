@@ -27,12 +27,8 @@ void cadastrar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o número do quarto:  \n");
-    printf("\t\t\tDigite a quantidade de camas:  \n");
-    printf("\t\t\tDigite se possui banheiro:  \n");
-    printf("\t\t\tDigite o status do quarto:  \n");
-    printf("\t\t\tDigite o valor do quarto per noite:  \n");
-    printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
+    printf("\t\t\tDigite o numero do quarto:  \n");
+    printf("\t\t\tDigite o tipo do quarto:  \n");   
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
@@ -65,9 +61,19 @@ void atualizar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite a quantidade de camas:  \n");
-    printf("\t\t\tDigite o valor do quarto per noite:  \n");
-    printf("\t\t\tDigite o valor do quarto para 24h completas:  \n");
+    printf("\t\t\tDigite o novo status do quarto");
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+void deletar_quartos(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                      DELETAR QUARTOS                                 |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tDigite o novo status do quarto");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();

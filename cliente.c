@@ -68,3 +68,13 @@ void atualizar_clientes(void){
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
+void deletar_clientes(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                      DELETAR CLIENTES                                |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}

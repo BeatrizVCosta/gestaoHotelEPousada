@@ -39,6 +39,8 @@ int main(void){
                     procurar_funcionarios();
                 }else if(op2=='4'){
                     atualizar_funcionarios();
+                }else if(op2=='5'){
+                    deletar_funcionarios();
                 }else{
                     printf("Opcao invalida!");
                 }
@@ -55,6 +57,8 @@ int main(void){
                     procurar_quartos();
                 }else if(op2=='4'){
                     atualizar_quartos();
+                }else if(op2=='5'){
+                    deletar_quartos();
                 }else{
                     printf("Opcao invalida!");
                 }

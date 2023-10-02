@@ -4,3 +4,4 @@
     void listar_funcionarios(void);
     void procurar_funcionarios(void);
     void atualizar_funcionarios(void);
+    void deletar_funcionarios(void);

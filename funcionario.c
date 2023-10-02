@@ -6,7 +6,7 @@ char menu_funcionarios(){
     char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                           FUNCIONÁRIOS                               |\n");
+    printf("|                           FUNCIONARIOS                               |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Cadastrar                                 |\n");
@@ -23,7 +23,7 @@ char menu_funcionarios(){
 void cadastrar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      CADASTRAR  FUNCIONÁRIOS                         |\n");
+    printf("|                      CADASTRAR  FUNCIONARIOS                         |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
@@ -38,7 +38,7 @@ void cadastrar_funcionarios(void){
 void procurar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      PROCURAR FUNCIONÁRIO                            |\n");
+    printf("|                      PROCURAR FUNCIONARIO                            |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
@@ -50,7 +50,7 @@ void procurar_funcionarios(void){
 void listar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      TODOS OS FUNCIONÁRIOS                           |\n");
+    printf("|                      TODOS OS FUNCIONARIOS                           |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
@@ -60,13 +60,23 @@ void listar_funcionarios(void){
 void atualizar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      ATUALIZAR FUNCIONÁRIOS                          |\n");
+    printf("|                      ATUALIZAR FUNCIONARIOS                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o status do funcionário:  \n");
     // atualizar se ele ainda trabalha para a empresa ou nao
     printf("\t\t\tDigite o novo cargo do funcionário  \n");
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+void deletar_funcionarios(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                      DELETAR FUNCIONARIO                             |\n");
+    printf("------------------------------------------------------------------------\n");
+    printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
