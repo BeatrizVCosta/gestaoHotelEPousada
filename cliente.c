@@ -1,6 +1,7 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
 #include "cliente.h"
+#include "validacao.h"
 
 char menu_clientes(){
     char op2;
@@ -22,13 +23,11 @@ char menu_clientes(){
 }
 void cadastrar_clientes(void){
     system("clear||cls");
+    char nome[100];
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  CLIENTES                             |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
-    printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o CPF:  \n");
-    printf("\t\t\tDigite o nome:  \n");
+    ler_nome(nome);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();

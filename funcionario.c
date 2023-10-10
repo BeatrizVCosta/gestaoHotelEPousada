@@ -1,7 +1,7 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
 #include "funcionario.h"
-
+#include "validacao.h"
 char menu_funcionarios(){
     char op2;
     system("clear||cls");
@@ -22,15 +22,16 @@ char menu_funcionarios(){
 }
 void cadastrar_funcionarios(void){
     system("clear||cls");
+    char nome[100];
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  FUNCIONARIOS                         |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o CPF:  \n");
-    printf("\t\t\tDigite o nome:  \n");
-    printf("\t\t\tDigite a data de nascimento:  \n");
-    printf("\t\t\tDigite o cargo do funcionário:  \n");
+    // printf("\t\t\tDigite o CPF:  \n");
+    ler_nome(nome);
+    // printf("\t\t\tDigite a data de nascimento:  \n");
+    // printf("\t\t\tDigite o cargo do funcionário:  \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
