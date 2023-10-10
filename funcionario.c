@@ -23,6 +23,7 @@ char menu_funcionarios(){
 void cadastrar_funcionarios(void){
     system("clear||cls");
     char nome[100];
+    int dia, mes, ano;
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  FUNCIONARIOS                         |\n");
     printf("------------------------------------------------------------------------\n");
@@ -30,7 +31,7 @@ void cadastrar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     // printf("\t\t\tDigite o CPF:  \n");
     ler_nome(nome);
-    // printf("\t\t\tDigite a data de nascimento:  \n");
+    ler_data(dia,mes,ano);
     // printf("\t\t\tDigite o cargo do funcionário:  \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");

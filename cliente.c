@@ -24,13 +24,17 @@ char menu_clientes(){
 void cadastrar_clientes(void){
     system("clear||cls");
     char nome[100];
+    int dia, mes, ano;
+    // int cpf[11];
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  CLIENTES                             |\n");
     printf("------------------------------------------------------------------------\n");
     ler_nome(nome);
+    ler_data(dia,mes,ano);
+    // ler_cpf(cpf);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
 void procurar_clientes(void){
     system("clear||cls");
