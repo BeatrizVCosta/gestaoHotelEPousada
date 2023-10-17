@@ -2,6 +2,16 @@
 #include <stdlib.h>/*Para o system */
 #include "funcionario.h"
 #include "validacao.h"
+
+struct funcionario {
+char nome[100];
+char CPF[11];
+char email[41];
+char data[8];
+char cargo[10];
+char status;
+};
+
 char menu_funcionarios(){
     char op2;
     system("clear||cls");

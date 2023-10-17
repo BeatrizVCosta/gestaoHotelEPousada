@@ -2,6 +2,12 @@
 #include <stdlib.h>/*Para o system */
 #include "quartos.h"
 
+struct quarto {
+char numero[100];
+char tipo[1];
+char status;
+};
+
 char menu_quartos(){
     char op2;
     system("clear||cls");

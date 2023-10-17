@@ -31,7 +31,7 @@ int verifica_nome(char* nome) {
     return 0;
 }
 
-void ler_data(int dia, int mes, int ano){
+void ler_data(dia, mes,ano){
     int valido;
     do{
         printf("\tDigite a data no formato(dd/mm/aaaa):  ");
@@ -80,6 +80,54 @@ int verifica_data(int dia,int mes,int ano){
     //printf("Data valida!\n");
     return 0;
 }
+
+void ler_email(char* email){
+    int valido;
+    do{
+        printf("\tDigite o email:  ");
+        fflush(stdin);
+        fgets(email, 100, stdin);
+        valido=verifica_email(email);
+        if (valido==1)
+        {
+            printf("\tEmail invalida!\n");
+        }
+        
+    }while(valido!=0);
+}
+//Função feita por Flavius gorgonio
+int verifica_email(char* email){
+  int tam=strlen(email);
+  int arroba = 0, ponto = 0, antesPonto = 0, depoisPonto = 0, i;
+  for (i = 0; i < tam; i++) {
+    char c = email[i];
+    if(c == '@') {
+      if (arroba)
+         break; // não pode ter uma segunda @
+      arroba++;
+      if (i < 3)
+        break; // se @ vier antes de 3 caracteres, erro
+    }
+    else if (arroba) { // se já encontrou @
+      if (ponto) { // se já encontrou . depois de @@
+        depoisPonto++;
+      }
+      else if(c == '.') {
+        ponto = 1;
+        if (antesPonto < 3) {
+          break; // se . depois de @ vier antes de 3 caracteres, erro
+        }
+      }
+      else {
+        antesPonto++;
+      }
+    }
+  } // for
+    if (i == tam && depoisPonto > 1)
+        return 1;
+    else
+        return 0;
+} 
 // void ler_cpf(char* cpf){
 //         int valido;
 //     do{
