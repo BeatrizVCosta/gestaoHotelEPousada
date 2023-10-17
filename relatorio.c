@@ -6,7 +6,7 @@ char relatorio(){
     char op2;
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                         RELATÓRIO                                    |\n");
+    printf("|                         RELATORIO                                    |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Consultar quartos disponiveis             |\n");
@@ -21,7 +21,7 @@ char relatorio(){
 void quartos_disponiveis(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                       QUARTOS DISPONÍVEIS                                |\n");
+    printf("|                       QUARTOS DISPONIVEIS                                |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("------------------------------------------------------------------------\n");
@@ -31,7 +31,7 @@ void quartos_disponiveis(void){
 void relatorio_geral(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                        RELATÓRIO GERAL                               |\n");
+    printf("|                        RELATORIO GERAL                               |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     // mostrar todos os check-in e check-out do dia, mês ou ano
@@ -42,7 +42,7 @@ void relatorio_geral(void){
 void precos(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                        TABELA DE PREÇOS                              |\n");
+    printf("|                        TABELA DE PRECOS                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     // mostrar o preço de todos os tipos de quartos

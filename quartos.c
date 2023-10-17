@@ -28,28 +28,37 @@ char menu_quartos(){
 }
 void cadastrar_quartos(void){
     system("clear||cls");
+    char numero[10];
+    char tipo[2];
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  QUARTOS                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o numero do quarto:  \n");
-    printf("\t\t\tDigite o tipo do quarto:  \n");   
+    fflush(stdin);
+    printf("\tDigite o numero do quarto:  \n");
+    fgets(numero,10, stdin);
+    fflush(stdin);
+    printf("\tDigite o tipo do quarto:  \n");
+    fgets(tipo,1, stdin);  
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
 void procurar_quartos(void){
     system("clear||cls");
+    char numero[10];
     printf("------------------------------------------------------------------------\n");
     printf("|                      PROCURAR QUARTO                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o número do quarto:  \n");
+    printf("\tDigite o numero do quarto:  \n");
+    fflush(stdin);
+    fgets(numero,10, stdin);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
 void listar_quartos(void){
     system("clear||cls");
@@ -58,29 +67,36 @@ void listar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tEM ANDAMENTO...... \n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    fflush(stdin);
+    getchar();
 }
 void atualizar_quartos(void){
     system("clear||cls");
+    char tipo[1];
     printf("------------------------------------------------------------------------\n");
     printf("|                      ATUALIZAR  QUARTOS                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o novo status do quarto");
+    printf("\tDigite o novo status do quarto");
+    fflush(stdin);
+    fgets(tipo,1, stdin);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
 void deletar_quartos(void){
     system("clear||cls");
+    char numero[10];
     printf("------------------------------------------------------------------------\n");
     printf("|                      DELETAR QUARTOS                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o novo status do quarto");
+    printf("\tDigite o numero do quarto que deseja deletar:");
+    fflush(stdin);
+    fgets(numero,10, stdin);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
