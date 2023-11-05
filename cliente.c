@@ -33,9 +33,27 @@ void cadastrar_clientes(void){
     ler_email(cli->email);
     ler_cpf(cli->CPF);
     printf("------------------------------------------------------------------------\n");
+    grava_cliente(cli);
+    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();
+    
 }
+void grava_cliente(Cliente* cli) //.h
+{
+    FILE* fp;
+    fp = fopen("clientes.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(cli, sizeof(Cliente), 1, fp);
+    fclose(fp);
+    printf("|\t\t\tCliente cadastrado com sucesso.\t\t\t|\n");
+}
+
 void procurar_clientes(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");

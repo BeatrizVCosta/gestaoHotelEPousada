@@ -11,6 +11,7 @@
     // funções
     char menu_clientes();
     void cadastrar_clientes(void);
+    void grava_cliente(Cliente* cli);
     void atualizar_clientes(void);
     void procurar_clientes(void);
     void listar_clientes(void);

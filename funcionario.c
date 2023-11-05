@@ -34,8 +34,24 @@ void cadastrar_funcionarios(void){
     ler_cpf(fun->CPF);
     ler_cargo(fun->cargo);
     printf("------------------------------------------------------------------------\n");
+    grava_funcionario(fun);
+    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
+}
+void grava_funcionario(Funcionario* fun) //.h
+{
+    FILE* fp;
+    fp = fopen("funconario.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(fun, sizeof(Funcionario), 1, fp);
+    fclose(fp);
+    printf("|\t\tFuncionario cadastrado com sucesso.\t\t\t|\n");
 }
 void procurar_funcionarios(void){
     system("clear||cls");
