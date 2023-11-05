@@ -1,7 +1,7 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
 #include "quartos.h"
-
+#include "validacao.h"
 char menu_quartos(){
     char op2;
     system("clear||cls");
@@ -22,23 +22,33 @@ char menu_quartos(){
 }
 void cadastrar_quartos(void){
     system("clear||cls");
-    char numero[10];
-    char tipo[2];
+    Quarto *qua = (Quarto*) malloc(sizeof(Quarto)); 
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  QUARTOS                              |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    fflush(stdin);
-    printf("\tDigite o numero do quarto:  \n");
-    fgets(numero,10, stdin);
-    fflush(stdin);
-    printf("\t1-VIP 2-Premium 3-Basico \n");
-    printf("\tDigite o tipo do quarto:  \n");
-    fgets(tipo,1, stdin);  
+    ler_numero(qua->numero);
+    ler_tipo(qua->tipo); 
+    printf("------------------------------------------------------------------------\n");
+    grava_quarto(qua);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();
+}
+void grava_quarto(Quarto* qua) //.h
+{
+    FILE* fp;
+    fp = fopen("quartos.dat", "ab");
+    if (fp == NULL) 
+    {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        exit(1);
+    }
+    fwrite(qua, sizeof(Quarto), 1, fp);
+    fclose(fp);
+    printf("|\t\t\tQuarto cadastrado com sucesso.\t\t\t|\n");
 }
 void procurar_quartos(void){
     system("clear||cls");
