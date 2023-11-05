@@ -3,15 +3,6 @@
 #include "funcionario.h"
 #include "validacao.h"
 
-struct funcionario {
-char nome[100];
-char CPF[11];
-char email[41];
-char data[8];
-char cargo[10];
-char status;
-};
-
 char menu_funcionarios(){
     char op2;
     system("clear||cls");
@@ -32,17 +23,16 @@ char menu_funcionarios(){
 }
 void cadastrar_funcionarios(void){
     system("clear||cls");
-    char nome[100];
-    int dia, mes, ano;
+    Funcionario *fun = (Funcionario*) malloc(sizeof(Funcionario));
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  FUNCIONARIOS                         |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    // printf("\t\t\tDigite o CPF:  \n");
-    ler_nome(nome);
-    ler_data(dia,mes,ano);
-    // printf("\t\t\tDigite o cargo do funcionário:  \n");
+    ler_nome(fun->nome);
+    ler_email(fun->email);
+    ler_cpf(fun->CPF);
+    ler_cargo(fun->cargo);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();

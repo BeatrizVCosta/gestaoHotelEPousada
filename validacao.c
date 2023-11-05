@@ -19,6 +19,22 @@ void ler_nome(char* nome){
     
    
 }
+void ler_cargo(char* cargo){
+    int valido;
+    do{
+        printf("\tDigite o cargo:  ");
+        fflush(stdin);
+        fgets(cargo, 100, stdin);
+        valido=verifica_nome(cargo);
+        if (valido==1)
+        {
+            printf("\tCargo invalido!\n");
+        }
+        
+    }while(valido!=0);
+    
+   
+}
 int verifica_nome(char* nome) {
     int i, tamanho;
     tamanho = strlen(nome) - 1;
@@ -31,7 +47,7 @@ int verifica_nome(char* nome) {
     return 0;
 }
 
-void ler_data(dia, mes,ano){
+void ler_data(int dia,int mes,int ano){
     int valido;
     do{
         printf("\tDigite a data no formato(dd/mm/aaaa):  ");
@@ -47,6 +63,7 @@ void ler_data(dia, mes,ano){
 }
 // Função adaptada do Bing AI
 int verifica_data(int dia,int mes,int ano){
+    return 1;
     if (ano < 0) {
         //printf("Data invalida! O ano nao pode ser negativo.\n");
         return 1;
@@ -124,23 +141,80 @@ int verifica_email(char* email){
     }
   } // for
     if (i == tam && depoisPonto > 1)
-        return 1;
-    else
         return 0;
+    else
+        return 1;
 } 
-// void ler_cpf(char* cpf){
-//         int valido;
-//     do{
-//         printf("\tDigite o CPF:  ");
-//         fflush(stdin);
-//         fgets(cpf, 100, stdin);
-//         valido=verifica_cpf(cpf);
-//         if (valido==1)
-//         {
-//             printf("\tCPF invalido!\n");
-//         }
-        
-//     }while(valido!=0);
-    
+void ler_cpf(char* CPF){
+        printf("\tDigite o CPF:  ");
+        fflush(stdin);
+        fgets(CPF, 100, stdin);
+}
+// função feita por flavius
+// int valida_cpf(char* cpf_cnpj)
+// {
+//   int tam;
+
+//   tam = strlen(cpf_cnpj);
+//    // Verifica se o CPF tem 11 digitos
+//     if (tam != 12) {
+//       return 0;
+//     }
+
+// // Exclui opcoes invalidas
+//     else if ((strcmp(cpf_cnpj,"00000000000\n") == 0) || (strcmp(cpf_cnpj,"11111111111\n") == 0) || 
+//     (strcmp(cpf_cnpj,"22222222222\n") == 0) || (strcmp(cpf_cnpj,"33333333333\n") == 0) || 
+//     (strcmp(cpf_cnpj,"44444444444\n") == 0) || (strcmp(cpf_cnpj,"55555555555\n") == 0) || 
+//     (strcmp(cpf_cnpj,"66666666666\n") == 0) || (strcmp(cpf_cnpj,"77777777777\n") == 0) || 
+//     (strcmp(cpf_cnpj,"88888888888\n") == 0) || (strcmp(cpf_cnpj,"99999999999\n") == 0)) {
+//       return 0;
+//     }
+
+//     // Verifica se todos os caracteres sao digitos numericos
+//     for (int i = 0; i < tam - 1; i++) {
+//       if (!eh_num(cpf_cnpj[i])) {
+//         return 0;
+//       }
+//     }
+
+//     // Calcula o primeiro digito verificador
+//     int soma = 0;
+//     for (int i = 0; i < 9; i++) {
+//       soma += (cpf_cnpj[i] - '0') * (10 - i);
+//     }
+
+//     int primeiro_digito = (soma * 10) % 11;
+//     if (primeiro_digito >= 10) {
+//       primeiro_digito = 0;
+//     }
+
+//     // Calcula o segundo digito verificador
+//     soma = 0;
+//     for (int i = 0; i < 10; i++) {
+//         soma += (cpf_cnpj[i] - '0') * (11 - i);
+//     }
+//     int segundo_digito = 11 - (soma % 11);
+//     if (segundo_digito >= 10) {
+//         segundo_digito = 0;
+//     }
+
+//     // Verifica se os digitos verificadores sao iguais aos fornecidos
+//     if (cpf_cnpj[9] - '0' == primeiro_digito && cpf_cnpj[10] - '0' == segundo_digito) {
+//         return 1;
+//     } else {
+//         return 0;
+//     }
 // }
+// int eh_num(char c) 
+// {
+//   if (c >= '0' && c <= '9') {
+//     return 1;
+//   } else if (c == 13) {
+//     return 1;
+//   } else {
+//     return 0;
+//   }  
+// }
+
+
 

@@ -44,7 +44,22 @@ void precos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                        TABELA DE PRECOS                              |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tEM ANDAMENTO...... \n");
+    printf("\t\t1- Quarto VIP: \n");
+    printf("\t\t- Possui uma suite com hidromassagem \n");
+    printf("\t\t- Cafe da manha\n");
+    printf("\t\t- Duas camas \n");
+    printf("\t\t- Acesso ao massagista do hotel\n");
+    printf("\t\t- Preco pernoite: 1200  \n\n");
+    printf("\t\t2- Quarto Premium: \n");
+    printf("\t\t- Possui uma suite com banheira \n");
+    printf("\t\t- Cafe da manha\n");
+    printf("\t\t- Uma cama \n");
+    printf("\t\t- Preco pernoite: 800  \n\n");
+    printf("\t\t3- Quarto Basico: \n");
+    printf("\t\t- Numa suite \n");
+    printf("\t\t- Cafe da manha\n");
+    printf("\t\t- Duas camas \n");
+    printf("\t\t- Preco pernoite: 500  \n");
     // mostrar o preço de todos os tipos de quartos
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");

@@ -1,4 +1,15 @@
-
+    //struc
+    typedef struct funcionario {
+    char nome[100];
+    char CPF[11];
+    char email[41];
+    char dia[2];
+    char mes[2];
+    char ano[4];
+    char cargo[10];
+    char status[10];//ativado ou desativado
+    }Funcionario;
+    //funções
     char menu_funcionarios();
     void cadastrar_funcionarios(void);
     void listar_funcionarios(void);

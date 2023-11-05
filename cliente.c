@@ -3,13 +3,6 @@
 #include "cliente.h"
 #include "validacao.h"
 
-struct cliente {
-char nome[100];
-char CPF[11];
-char email[41];
-char data[8];
-char status;
-};
 
 char menu_clientes(){
     char op2;
@@ -31,19 +24,14 @@ char menu_clientes(){
 }
 void cadastrar_clientes(void){
     system("clear||cls");
-    char nome[100];
-    int dia;
-    int mes;
-    int ano;
-    char email[100];
-    // int cpf[11];
+    Cliente *cli = (Cliente*) malloc(sizeof(Cliente)); 
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  CLIENTES                             |\n");
     printf("------------------------------------------------------------------------\n");
-    ler_nome(nome);
-    ler_data(dia,mes,ano);
-    ler_email(email);
-    // ler_cpf(cpf);
+    ler_nome(cli->nome);
+    // ler_data(cli->dia,cli->mes,cli->ano);
+    ler_email(cli->email);
+    ler_cpf(cli->CPF);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();

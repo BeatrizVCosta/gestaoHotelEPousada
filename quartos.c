@@ -2,12 +2,6 @@
 #include <stdlib.h>/*Para o system */
 #include "quartos.h"
 
-struct quarto {
-char numero[100];
-char tipo[1];
-char status;
-};
-
 char menu_quartos(){
     char op2;
     system("clear||cls");
@@ -39,6 +33,7 @@ void cadastrar_quartos(void){
     printf("\tDigite o numero do quarto:  \n");
     fgets(numero,10, stdin);
     fflush(stdin);
+    printf("\t1-VIP 2-Premium 3-Basico \n");
     printf("\tDigite o tipo do quarto:  \n");
     fgets(tipo,1, stdin);  
     printf("------------------------------------------------------------------------\n");
