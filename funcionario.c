@@ -1,5 +1,6 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
+#include <string.h>
 #include "funcionario.h"
 #include "validacao.h"
 
@@ -27,8 +28,6 @@ void cadastrar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  FUNCIONARIOS                         |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
-    printf("------------------------------------------------------------------------\n");
     ler_nome(fun->nome);
     ler_email(fun->email);
     ler_cpf(fun->CPF);
@@ -43,7 +42,7 @@ void cadastrar_funcionarios(void){
 void grava_funcionario(Funcionario* fun) //.h
 {
     FILE* fp;
-    fp = fopen("funconario.dat", "ab");
+    fp = fopen("funcionario.dat", "ab");
     if (fp == NULL) 
     {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
@@ -57,16 +56,34 @@ void grava_funcionario(Funcionario* fun) //.h
     printf("|\t\tE-mail: %s", fun->email);
     printf("|\t\tCPF: %s", fun->CPF);
     printf("|\t\tCargo: %s", fun->cargo);
-    printf("|\t\tstatus: %c\n", fun->status);
+    printf("|\t\tStatus: %c\n", fun->status);
+}
+void exibe_funcionario(Funcionario* fun) {
+  char situacao[13];
+  if ((fun == NULL) || (fun->status == 'D')) {
+    printf("\n\t\tFuncionario Inexistente\n");
+  } else {
+    printf("\n\t\tFuncionario Encontrado\n");
+    printf("Nome: %s\n", fun->nome);
+    printf("E-mail: %s\n", fun->email);
+    printf("CPF: %s\n", fun->CPF);
+    printf("Cargo: %s\n", fun->cargo);
+    if (fun->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (fun->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("Situacao do funcionario: %s\n", situacao);
+  }
 }
 void procurar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                      PROCURAR FUNCIONARIO                            |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
-    printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o nome do funcionário:  \n");
+    printf("\t\tDigite o nome do funcionario:  \n");
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
@@ -76,17 +93,33 @@ void listar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      TODOS OS FUNCIONARIOS                           |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tEM ANDAMENTO...... \n");
-    printf("------------------------------------------------------------------------\n");
+    listar_fun();
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
+}
+void listar_fun(void) {
+  FILE* fp;
+  Funcionario* fun; 
+  fun = (Funcionario*) malloc(sizeof(Funcionario));
+  fp = fopen("funcionario.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(fun, sizeof(Funcionario), 1, fp)) {
+    if (fun->status != 'D') {
+      exibe_funcionario(fun);
+      printf("------------------------------------------------------------------------\n");
+    }
+  }
+  fclose(fp);
+  free(fun);
 }
 void atualizar_funcionarios(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
     printf("|                      ATUALIZAR FUNCIONARIOS                          |\n");
-    printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite o status do funcionário:  \n");
     // atualizar se ele ainda trabalha para a empresa ou nao

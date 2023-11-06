@@ -17,3 +17,5 @@
     void procurar_funcionarios(void);
     void atualizar_funcionarios(void);
     void deletar_funcionarios(void);
+    void listar_fun(void);
+    void exibe_funcionario(Funcionario* fun);

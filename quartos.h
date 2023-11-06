@@ -15,3 +15,5 @@
     void procurar_quartos(void);
     void atualizar_quartos(void);
     void deletar_quartos(void);
+    void listar_qua(void);
+    void exibe_quartos(Quarto* qua);

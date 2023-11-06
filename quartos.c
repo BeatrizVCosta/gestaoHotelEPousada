@@ -27,8 +27,6 @@ void cadastrar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      CADASTRAR  QUARTOS                              |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
-    printf("------------------------------------------------------------------------\n");
     ler_numero(qua->numero);
     ler_tipo(qua->tipo);
     qua->status='A'; 
@@ -50,9 +48,19 @@ void grava_quarto(Quarto* qua) //.h
     }
     fwrite(qua, sizeof(Quarto), 1, fp);
     fclose(fp);
-    printf("|\t\t\tQuarto cadastrado com sucesso!\t\t\t|\n|\n");
+    printf("|\t\tQuarto cadastrado com sucesso!\t\t\t\t|\n|\n");
     printf("|\t\tNumero: %s\n", qua->numero);
-    char tip[8];
+    printf("|\t\tTipo: %c\n", qua->tipo);
+    printf("|\t\tStatus: %c\n", qua->status);
+}
+void exibe_quartos(Quarto* qua) {
+  char situacao[13];
+  char tip[8];
+  if ((qua == NULL) || (qua->status == 'D')) {
+    printf("\n\t\tQuarto Inexistente\n");
+  } else {
+    printf("\n\t\tQuarto Encontrado\n");
+    printf("Numero: %s\n", qua->numero);
     if(qua->tipo == 1) {
       strcpy(tip, "VIP");
     } else if (qua->tipo== 2) {
@@ -62,16 +70,22 @@ void grava_quarto(Quarto* qua) //.h
     }else{
         strcpy(tip, "Outro");
     }
-    printf("|\t\tTipo do quarto: %s\n", tip);
-    printf("|\t\tstatus: %c\n", qua->status);
+    printf("Tipo: %s\n", tip);
+    if (qua->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (qua->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("Situacao do quarto: %s\n", situacao);
+  }
 }
 void procurar_quartos(void){
     system("clear||cls");
     char numero[10];
     printf("------------------------------------------------------------------------\n");
     printf("|                      PROCURAR QUARTO                                 |\n");
-    printf("------------------------------------------------------------------------\n");
-    printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\tDigite o numero do quarto:  \n");
     fflush(stdin);
@@ -85,10 +99,29 @@ void listar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      TODOS OS QUARTOS                                |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tEM ANDAMENTO...... \n");
+    listar_qua();
     printf("Pressione qualquer tecla para continuar...\n");
     fflush(stdin);
     getchar();
+}
+void listar_qua(void) {
+  FILE* fp;
+  Quarto* qua; 
+  qua = (Quarto*) malloc(sizeof(Quarto));
+  fp = fopen("quartos.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Não é possível continuar este programa...\n");
+    exit(1);
+  }
+  while(fread(qua, sizeof(Quarto), 1, fp)) {
+    if (qua->status != 'D') {
+      exibe_quartos(qua);
+      printf("------------------------------------------------------------------------\n");
+    }
+  }
+  fclose(fp);
+  free(qua);
 }
 void atualizar_quartos(void){
     system("clear||cls");

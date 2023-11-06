@@ -18,3 +18,4 @@
     void exibe_cliente(Cliente* cli);
     void listar_clientes(void);
     void deletar_clientes(void);
+    void listar_cli(void);
