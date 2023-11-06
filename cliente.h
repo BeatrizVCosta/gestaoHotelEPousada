@@ -6,7 +6,7 @@
     char dia[2];
     char mes[2];
     char ano[4];
-    char status[10]; // ativo ou desativado
+    char status; // A-ativo ou D-desativado
     } Cliente;
     // funções
     char menu_clientes();
@@ -14,5 +14,7 @@
     void grava_cliente(Cliente* cli);
     void atualizar_clientes(void);
     void procurar_clientes(void);
+    Cliente* busca_cliente(void);
+    void exibe_cliente(Cliente* cli);
     void listar_clientes(void);
     void deletar_clientes(void);

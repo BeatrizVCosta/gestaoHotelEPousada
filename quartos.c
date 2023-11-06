@@ -1,5 +1,6 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
+#include <string.h>
 #include "quartos.h"
 #include "validacao.h"
 char menu_quartos(){
@@ -29,12 +30,13 @@ void cadastrar_quartos(void){
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
     ler_numero(qua->numero);
-    ler_tipo(qua->tipo); 
+    ler_tipo(qua->tipo);
+    qua->status='A'; 
     printf("------------------------------------------------------------------------\n");
     grava_quarto(qua);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();
+    getchar();getchar();
 }
 void grava_quarto(Quarto* qua) //.h
 {
@@ -48,7 +50,20 @@ void grava_quarto(Quarto* qua) //.h
     }
     fwrite(qua, sizeof(Quarto), 1, fp);
     fclose(fp);
-    printf("|\t\t\tQuarto cadastrado com sucesso.\t\t\t|\n");
+    printf("|\t\t\tQuarto cadastrado com sucesso!\t\t\t|\n|\n");
+    printf("|\t\tNumero: %s\n", qua->numero);
+    char tip[8];
+    if(qua->tipo == 1) {
+      strcpy(tip, "VIP");
+    } else if (qua->tipo== 2) {
+      strcpy(tip, "Premium");
+    } else if(qua->tipo==3){
+      strcpy(tip, "Basico");
+    }else{
+        strcpy(tip, "Outro");
+    }
+    printf("|\t\tTipo do quarto: %s\n", tip);
+    printf("|\t\tstatus: %c\n", qua->status);
 }
 void procurar_quartos(void){
     system("clear||cls");

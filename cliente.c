@@ -1,4 +1,5 @@
 #include <stdio.h>/* Para o printf */
+#include <string.h>
 #include <stdlib.h>/*Para o system */
 #include "cliente.h"
 #include "validacao.h"
@@ -32,6 +33,7 @@ void cadastrar_clientes(void){
     // ler_data(cli->dia,cli->mes,cli->ano);
     ler_email(cli->email);
     ler_cpf(cli->CPF);
+    cli->status='A';
     printf("------------------------------------------------------------------------\n");
     grava_cliente(cli);
     printf("------------------------------------------------------------------------\n");
@@ -51,20 +53,71 @@ void grava_cliente(Cliente* cli) //.h
     }
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
-    printf("|\t\t\tCliente cadastrado com sucesso.\t\t\t|\n");
+    printf("|\t\tCliente cadastrado com sucesso!\t\t\t|\n|\n");
+    printf("|\t\tNome: %s", cli->nome);
+    printf("|\t\tE-mail: %s", cli->email);
+    printf("|\t\tCPF: %s", cli->CPF);
+    printf("|\t\tstatus: %c\n", cli->status);
+
 }
 
 void procurar_clientes(void){
     system("clear||cls");
+    Cliente* cli;
     printf("------------------------------------------------------------------------\n");
     printf("|                      PROCURAR CLIENTE                               |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o nome do cliente:  \n");
+    cli=busca_cliente();
+    exibe_cliente(cli);
+    free(cli);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
+}
+Cliente* busca_cliente(void) {
+  FILE* fp;
+  Cliente* cli;
+  char nome[100];
+  printf("\t\t\tDigite o nome do cliente:  ");
+  fflush(stdin);
+  fgets(nome, 100, stdin);
+  cli = (Cliente*) malloc(sizeof(Cliente));
+  fp = fopen("clientes.dat", "rb");
+  if (fp == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    exit(1);
+  }
+  while(!feof(fp)) {
+    fread(cli, sizeof(Cliente), 1, fp);
+    if ((cli->nome == nome) && (cli->status != 'A')) {
+      fclose(fp);
+      return cli;
+    }
+  }
+  fclose(fp);
+  return NULL;
+}
+void exibe_cliente(Cliente* cli) {
+  char situacao[13];
+  if ((cli == NULL) || (cli->status == 'D')) {
+    printf("\n= = = Cliente Inexistente = = =\n");
+  } else {
+    printf("\n= = = Cliente Encontrado = = =\n");
+    printf("Nome: %s\n", cli->nome);
+    printf("E-mail: %s\n", cli->email);
+    printf("CPF: %s\n", cli->CPF);
+    if (cli->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (cli->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("Situação do cliente: %s\n", situacao);
+  }
 }
 void listar_clientes(void){
     system("clear||cls");

@@ -41,11 +41,11 @@ void ler_numero(char* numero){
     fgets(numero, 3, stdin);
    
 }
-void ler_tipo(char* tipo){
+void ler_tipo(char tipo){
     printf("\t 1-VIP 2-PREMIUM 3-BASICO\n");
     printf("\tDigite o tipo do quarto(1/2/3):  ");
     fflush(stdin);
-    fgets(tipo, 3, stdin);
+    scanf("%c",&tipo);
 }
 int verifica_nome(char* nome) {
     int i, tamanho;

@@ -7,7 +7,7 @@
     char mes[2];
     char ano[4];
     char cargo[10];
-    char status[10];//ativado ou desativado
+    char status;//A-ativado ou D-desativado
     }Funcionario;
     //funções
     char menu_funcionarios();

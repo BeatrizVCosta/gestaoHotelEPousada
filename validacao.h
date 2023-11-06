@@ -9,4 +9,4 @@
     void eh_num(char c);
     void ler_cargo(char* cargo);
     void ler_numero(char* numero);
-    void ler_tipo(char* tipo);
+    void ler_tipo(char tipo);

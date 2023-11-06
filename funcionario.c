@@ -33,11 +33,12 @@ void cadastrar_funcionarios(void){
     ler_email(fun->email);
     ler_cpf(fun->CPF);
     ler_cargo(fun->cargo);
+    fun->status='A';
     printf("------------------------------------------------------------------------\n");
     grava_funcionario(fun);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
 }
 void grava_funcionario(Funcionario* fun) //.h
 {
@@ -51,7 +52,12 @@ void grava_funcionario(Funcionario* fun) //.h
     }
     fwrite(fun, sizeof(Funcionario), 1, fp);
     fclose(fp);
-    printf("|\t\tFuncionario cadastrado com sucesso.\t\t\t|\n");
+    printf("|\t\tFuncionario cadastrado com sucesso!\t\t\t|\n|\n");
+    printf("|\t\tNome: %s", fun->nome);
+    printf("|\t\tE-mail: %s", fun->email);
+    printf("|\t\tCPF: %s", fun->CPF);
+    printf("|\t\tCargo: %s", fun->cargo);
+    printf("|\t\tstatus: %c\n", fun->status);
 }
 void procurar_funcionarios(void){
     system("clear||cls");
