@@ -2,6 +2,8 @@
 #include <ctype.h>
 #include <string.h>
 #include "validacao.h"
+#include <stdbool.h>
+
 
 void ler_nome(char* nome){
     int valido;
@@ -42,17 +44,38 @@ void ler_numero(char* numero){
    
 }
 void ler_tipo(char* tipo){
+    int t;  
+    bool v=true,f=false;
     printf("\t 1-VIP 2-PREMIUM 3-BASICO\n");
-    printf("\tDigite o tipo do quarto(1/2/3):  ");
-    fflush(stdin);
-    scanf("%[^\n]",tipo);
-    printf("%s",tipo);
-    fflush(stdin);
+    while(v){
+        printf("\tDigite o tipo do quarto(1/2/3):");
+        fflush(stdin);
+        scanf("%[^\n]",tipo);
+        fflush(stdin);
+        t=verifica_tipo(tipo);
+        if (t==1){
+            v=f; 
+        }else{
+            printf("Tipo de quarto não existe\n");
+        }
+    }
 }
 
-// int verifica_tipo(char * tipo){
-//     int tam=strlen(tipo);
-// }
+
+int verifica_tipo(char * tipo){
+    int tam=strlen(tipo);
+    char *t[]={"1","2","3"};
+    if (tam!=1){
+        return 0;
+    }
+    for (int i=0; i<3 ;i++){
+        if(strcmp(tipo,t[i])==0){
+            return 1;
+        }
+    }
+    return 0;
+}
+
 int verifica_nome(char* nome) {
     int i, tamanho;
     tamanho = strlen(nome) - 1;

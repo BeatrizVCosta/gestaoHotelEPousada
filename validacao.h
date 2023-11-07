@@ -10,3 +10,4 @@
     void ler_cargo(char* cargo);
     void ler_numero(char* numero);
     void ler_tipo(char* tipo);
+    int verifica_tipo(char * tipo);

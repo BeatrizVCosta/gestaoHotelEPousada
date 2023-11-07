@@ -19,3 +19,4 @@
     void listar_clientes(void);
     void deletar_clientes(void);
     void listar_cli(void);
+    void att_cliente(char *nome);

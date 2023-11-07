@@ -68,7 +68,6 @@ void procurar_clientes(void){
     printf("|                      PROCURAR CLIENTE                               |\n");
     printf("------------------------------------------------------------------------\n");
     cli=busca_cliente();
-    exibe_cliente(cli);
     free(cli);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
@@ -91,8 +90,9 @@ Cliente* busca_cliente(void) {
   while(!feof(fp)) {
     fread(cli, sizeof(Cliente), 1, fp);
     if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')) {
-      fclose(fp);
-      return cli;
+      // fclose(fp);
+      // return cli;
+      exibe_cliente(cli);
     }
   }
   fclose(fp);
@@ -147,11 +147,13 @@ void listar_cli(void) {
 }
 void atualizar_clientes(void){
     system("clear||cls");
+    char nome[100];
     printf("------------------------------------------------------------------------\n");
     printf("|                      ATUALIZAR CLIENTES                              |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tDigite o status do cliente:  \n");
-    // colocar se o cliente foi banido do hotel
+    printf("\t\t\tDigite o nome do cliente que deseja atualizar:  \n");
+    ler_nome(nome);
+    att_cliente(nome);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
@@ -165,4 +167,70 @@ void deletar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
+}
+//função adaptada de Matheus Diniz
+void att_cliente(char *nome){
+  FILE* fp;
+  Cliente* cli;
+  int encontra=0;
+  int esc;
+  cli=(Cliente*)malloc(sizeof(Cliente));
+  fp=fopen("clientes.dat","r+b");
+  if (fp==NULL){
+    printf("Nenhum cliente cadastrado!");
+    return;
+  }
+  if (fp==NULL){
+    printf("Nenhum cliente cadastrado!");
+    return;
+  }
+  while (fread(cli, sizeof(Cliente), 1, fp)) {
+    if ((strcmp(cli->nome, nome) == 0) && (cli->status == 'A')){
+      encontra=1;
+        while(esc!=0){
+          system("clear||cls");
+          printf("------------------------------------------------------------------------\n");
+          printf("|                      ATUALIZAR CLIENTES                              |\n");
+          printf("------------------------------------------------------------------------\n");
+          printf("                 Dados do cliente:\n");
+          printf("\t\tNome do cliente:%s\n",cli->nome);
+          printf("\t\tEmail do cliente:%s\n",cli->email);
+          printf("\t\tCPF do cliente:%s\n",cli->CPF);
+          printf("\n");
+          printf("|                Digite [1] para alterar o email                       |\n");
+          printf("|                Digite [2] para alterar o nome                        |\n");
+          printf("|                Digite [0] para sair                                  |\n");
+          printf("------------------------------------------------------------------------\n");
+          printf("O que deseja fazer?");
+          fflush(stdin);
+          scanf("%d",&esc);
+          fflush(stdin);
+          switch (esc){
+            case 1:
+              ler_email(cli->email);
+              printf("Alteração realizada com sucesso!");
+              printf("\nDigite enter para continuar...");getchar();
+              break;
+            case 2:
+              ler_nome(cli->nome);
+              printf("Alteração realizada com sucesso!");
+              printf("\nDigite enter para continuar...");getchar();
+            case 0:
+              esc=0;
+              break;
+            default:
+              printf("\nOpção Inválida!\n");
+              printf("Digite enter para continuar...");getchar(); 
+              break;
+            }
+            fseek(fp, -1 * (long)sizeof(Cliente), SEEK_CUR);
+            fwrite(cli, sizeof(Cliente), 1, fp);
+          }break;
+      }
+  }
+  if (!encontra){
+    printf("Cliente não encontrado!");
+  }
+  fclose(fp);
+  free(cli);
 }
