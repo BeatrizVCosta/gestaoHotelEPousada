@@ -40,7 +40,7 @@ void ler_cargo(char* cargo){
 void ler_numero(char* numero){
     printf("\tDigite o numero do quarto:  ");
     fflush(stdin);
-    fgets(numero, 3, stdin);
+    fgets(numero, 4, stdin);
    
 }
 void ler_tipo(char* tipo){

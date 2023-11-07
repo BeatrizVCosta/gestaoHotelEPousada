@@ -1,8 +1,8 @@
     //struc
     typedef struct funcionario {
     char nome[100];
-    char CPF[11];
-    char email[41];
+    char CPF[15];
+    char email[255];
     char dia[2];
     char mes[2];
     char ano[4];
@@ -19,3 +19,6 @@
     void deletar_funcionarios(void);
     void listar_fun(void);
     void exibe_funcionario(Funcionario* fun);
+    void delete_funcionario(char *nome);
+    void att_funcionario(char *nome);
+    Funcionario* busca_funcionario(void);

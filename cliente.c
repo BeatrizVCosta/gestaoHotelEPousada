@@ -88,8 +88,9 @@ Cliente* busca_cliente(void) {
     printf("Nao e possivel continuar este programa...\n");
     exit(1);
   }
-  while(!feof(fp)) {
-    fread(cli, sizeof(Cliente), 1, fp);
+  // while(!feof(fp)) {
+    // fread(cli, sizeof(Cliente), 1, fp);
+  while(fread(cli, sizeof(Cliente), 1, fp)) {
     if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')) {
       // fclose(fp);
       // return cli;
@@ -273,12 +274,12 @@ void att_cliente(char *nome){
           switch (esc){
             case 1:
               ler_email(cli->email);
-              printf("Alteração realizada com sucesso!");
+              printf("\tEmail atualizado com sucesso!");
               printf("\nDigite enter para continuar...");getchar();
               break;
             case 2:
               ler_nome(cli->nome);
-              printf("Alteração realizada com sucesso!");
+              printf("\tNome atualizado com sucesso!");
               printf("\nDigite enter para continuar...");getchar();
             case 0:
               esc=0;
