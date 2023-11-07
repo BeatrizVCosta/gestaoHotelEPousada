@@ -38,7 +38,7 @@ void cadastrar_clientes(void){
     grava_cliente(cli);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();
+    getchar();getchar();
     
 }
 void grava_cliente(Cliente* cli) //.h
@@ -54,9 +54,10 @@ void grava_cliente(Cliente* cli) //.h
     fwrite(cli, sizeof(Cliente), 1, fp);
     fclose(fp);
     printf("|\t\tCliente cadastrado com sucesso!\t\t\t\t|\n|\n");
-    printf("|\t\tNome: %s", cli->nome);
-    printf("|\t\tE-mail: %s", cli->email);
-    printf("|\t\tCPF: %s", cli->CPF);
+    printf("|\t\tNome: %s\n", cli->nome);
+    printf("|\t\tE-mail: %s\n", cli->email);
+    printf("|\t\tCPF: %s\n", cli->CPF);
+    // printf("|\t\tdata: %n/%n/%n\n", cli->dia,cli->mes,cli->ano);
     printf("|\t\tStatus: %c\n", cli->status);
 
 }
@@ -105,6 +106,7 @@ void exibe_cliente(Cliente* cli) {
   } else {
     printf("\n\t\tCliente Encontrado\n");
     printf("Nome: %s\n", cli->nome);
+    // printf("Data de nascimento: %n/%n/%n\n", cli->dia,cli->mes,cli->ano);
     printf("E-mail: %s\n", cli->email);
     printf("CPF: %s\n", cli->CPF);
     if (cli->status == 'A') {

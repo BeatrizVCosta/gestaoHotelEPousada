@@ -1,11 +1,11 @@
     // struct
     typedef struct cliente {
     char nome[100];
-    char CPF[11];
-    char email[41];
-    char dia[2];
-    char mes[2];
-    char ano[4];
+    char CPF[15];
+    char email[255];
+    int dia[2];
+    int mes[2];
+    int ano[4];
     char status; // A-ativo ou D-desativado
     } Cliente;
     // funções

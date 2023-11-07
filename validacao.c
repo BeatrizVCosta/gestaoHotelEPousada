@@ -88,63 +88,12 @@ int verifica_nome(char* nome) {
     return 0;
 }
 
-void ler_data(int dia,int mes,int ano){
-    int valido;
-    do{
-        printf("\tDigite a data no formato(dd/mm/aaaa):  ");
-        fflush(stdin);
-        scanf("%d/%d/%d", &dia, &mes, &ano);
-        valido=verifica_data(dia, mes, ano);
-        if (valido==1)
-        {
-            printf("\tData invalida!\n");
-        }
-        
-    }while(valido!=0);
-}
-// Função adaptada do Bing AI
-int verifica_data(int dia,int mes,int ano){
-    return 1;
-    if (ano < 0) {
-        //printf("Data invalida! O ano nao pode ser negativo.\n");
-        return 1;
-    }
-
-    if (mes < 1 || mes > 12) {
-        //printf("Data invalida! O mes deve estar entre 1 e 12.\n");
-        return 1;
-    }
-
-    int diasNoMes;
-    switch (mes) {
-        case 4: case 6: case 9: case 11:
-            diasNoMes = 30;
-            break;
-        case 2:
-            if ((ano % 4 == 0 && ano % 100 != 0) || (ano % 400 == 0))
-                diasNoMes = 29;
-            else
-                diasNoMes = 28;
-            break;
-        default:
-            diasNoMes = 31;
-    }
-
-    if (dia < 1 || dia > diasNoMes) {
-        // printf("Data invalida! O dia deve estar entre 1 e %d para o mes %d.\n", diasNoMes, mes);
-        return 1;
-    }
-
-    //printf("Data valida!\n");
-    return 0;
-}
-
 void ler_email(char* email){
     int valido;
     do{
         printf("\tDigite o email:  ");
         fflush(stdin);
-        fgets(email, 100, stdin);
+        fgets(email, 255, stdin);
         valido=verifica_email(email);
         if (valido==1)
         {
@@ -186,76 +135,125 @@ int verifica_email(char* email){
     else
         return 1;
 } 
-void ler_cpf(char* CPF){
-        printf("\tDigite o CPF:  ");
-        fflush(stdin);
-        fgets(CPF, 100, stdin);
+
+
+
+void removerCaracteresNaoNumericos(char cpf[]) {
+    //feita pelo chat gpt
+    int len = strlen(cpf);
+    int k = 0;
+    for (int i = 0; i < len; i++) {
+        if (cpf[i] >= '0' && cpf[i] <= '9') {
+            cpf[k] = cpf[i];
+            k++;
+        }
+    }
+    cpf[k] = '\0'; // Adicione o terminador nulo ao final
 }
-// função feita por flavius
-// int valida_cpf(char* cpf_cnpj)
-// {
-//   int tam;
 
-//   tam = strlen(cpf_cnpj);
-//    // Verifica se o CPF tem 11 digitos
-//     if (tam != 12) {
-//       return 0;
-//     }
+int validarCPF(char cpf[]) {
+    //validação de cpf retirado do site http://wurthmann.blogspot.com/ e sofreu algumas adpatações por Matheus Diniz
+    // Remova os caracteres de pontuação (.) e hífen (-) do CPF
+    removerCaracteresNaoNumericos(cpf);
 
-// // Exclui opcoes invalidas
-//     else if ((strcmp(cpf_cnpj,"00000000000\n") == 0) || (strcmp(cpf_cnpj,"11111111111\n") == 0) || 
-//     (strcmp(cpf_cnpj,"22222222222\n") == 0) || (strcmp(cpf_cnpj,"33333333333\n") == 0) || 
-//     (strcmp(cpf_cnpj,"44444444444\n") == 0) || (strcmp(cpf_cnpj,"55555555555\n") == 0) || 
-//     (strcmp(cpf_cnpj,"66666666666\n") == 0) || (strcmp(cpf_cnpj,"77777777777\n") == 0) || 
-//     (strcmp(cpf_cnpj,"88888888888\n") == 0) || (strcmp(cpf_cnpj,"99999999999\n") == 0)) {
-//       return 0;
-//     }
+    int i, j, digito1 = 0, digito2 = 0;
 
-//     // Verifica se todos os caracteres sao digitos numericos
-//     for (int i = 0; i < tam - 1; i++) {
-//       if (!eh_num(cpf_cnpj[i])) {
-//         return 0;
+    if (strlen(cpf) != 11)
+        return 0;
+    else if ( 
+             (strcmp(cpf, "22222222222") == 0) || (strcmp(cpf, "33333333333") == 0) ||
+             (strcmp(cpf, "44444444444") == 0) || (strcmp(cpf, "55555555555") == 0) ||
+             (strcmp(cpf, "66666666666") == 0) || (strcmp(cpf, "77777777777") == 0) ||
+             (strcmp(cpf, "88888888888") == 0) || (strcmp(cpf, "99999999999") == 0))
+        return 0;
+    else {
+        // Digito 1
+        for (i = 0, j = 10; i < 9; i++, j--) {
+            digito1 += (cpf[i] - '0') * j;
+        }
+        digito1 %= 11;
+        if (digito1 < 2)
+            digito1 = 0;
+        else
+            digito1 = 11 - digito1;
+        if ((cpf[9] - '0') != digito1)
+            return 0;
+
+        // Digito 2
+        for (i = 0, j = 11; i < 10; i++, j--) {
+            digito2 += (cpf[i] - '0') * j;
+        }
+        digito2 %= 11;
+        if (digito2 < 2)
+            digito2 = 0;
+        else
+            digito2 = 11 - digito2;
+        if ((cpf[10] - '0') != digito2)
+            return 0;
+    }
+
+    return 1;
+}
+
+void ler_cpf(char cpf[]) {
+    //função reutilizável para realizar a leitura do cpf
+    int c;
+    bool v=true,f=false;
+    while (v) {
+        printf("\tDigite o seu CPF: ");
+        scanf("%s", cpf);
+        c = validarCPF(cpf);
+        if (c == 1) {
+            v=f;
+        } else if (c == 0) {
+            printf("CPF inválido!\n");
+        }
+    }
+}
+
+// int valida_data(int dia, int mes, int ano) { 
+//     if ((dia >= 1 && dia <= 31) && (mes >= 1 && mes <= 12) && (ano >= 1900 && ano <= 2100)) ///verifica se os numeros sao validos
+//         {
+//             if ((dia == 29 && mes == 2) && ((ano % 4) == 0)) ///verifica se o ano e bissexto
+//             {
+//                 return 1;
+//             }
+//             if (dia <= 28 && mes == 2) ///verifica o mes de feveireiro
+//             {
+//                 return 1;
+//             }
+//             if ((dia <= 30) && (mes == 4 || mes == 6 || mes == 9 || mes == 11)) ///verifica os meses de 30 dias
+//             {
+//                 return 1;
+//             }
+//             if ((dia <=31) && (mes == 1 || mes == 3 || mes == 5 || mes == 7 || mes ==8 || mes == 10 || mes == 12)) ///verifica os meses de 31 dias
+//             {
+//                 return 1;
+//             }
+//             else
+//             {
+//                 return 0;
+//             }
 //       }
-//     }
+//        else
+//            {
+//                 return 0;
+//            }
+// }
 
-//     // Calcula o primeiro digito verificador
-//     int soma = 0;
-//     for (int i = 0; i < 9; i++) {
-//       soma += (cpf_cnpj[i] - '0') * (10 - i);
-//     }
-
-//     int primeiro_digito = (soma * 10) % 11;
-//     if (primeiro_digito >= 10) {
-//       primeiro_digito = 0;
-//     }
-
-//     // Calcula o segundo digito verificador
-//     soma = 0;
-//     for (int i = 0; i < 10; i++) {
-//         soma += (cpf_cnpj[i] - '0') * (11 - i);
-//     }
-//     int segundo_digito = 11 - (soma % 11);
-//     if (segundo_digito >= 10) {
-//         segundo_digito = 0;
-//     }
-
-//     // Verifica se os digitos verificadores sao iguais aos fornecidos
-//     if (cpf_cnpj[9] - '0' == primeiro_digito && cpf_cnpj[10] - '0' == segundo_digito) {
-//         return 1;
+// int ler_data(int dia,int mes,int ano){
+//     int c;
+//     bool v=true,f=false;
+//     while(v){
+//     printf("Digite o dia no formato dd/mm/aaaa: ");
+//     scanf("%d/%d/%d", dia, mes, ano);  // 14/01/2005
+//     fflush(stdin);
+//     printf("|\t\tdata: %n/%n/%n\n", dia,mes,ano);
+//     c=valida_data(dia,mes,ano);
+//     if (c==1) {
+//             v=f;
 //     } else {
-//         return 0;
+//         printf("Data inválida.\n");
+//         }
 //     }
 // }
-// int eh_num(char c) 
-// {
-//   if (c >= '0' && c <= '9') {
-//     return 1;
-//   } else if (c == 13) {
-//     return 1;
-//   } else {
-//     return 0;
-//   }  
-// }
-
-
-
