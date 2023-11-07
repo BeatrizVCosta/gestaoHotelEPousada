@@ -90,7 +90,7 @@ Cliente* busca_cliente(void) {
   }
   while(!feof(fp)) {
     fread(cli, sizeof(Cliente), 1, fp);
-    if ((cli->nome == nome) && (cli->status != 'A')) {
+    if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')) {
       fclose(fp);
       return cli;
     }

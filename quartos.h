@@ -2,7 +2,7 @@
     
     typedef struct quarto {
     char numero[3];
-    char tipo;
+    char tipo[3];
     char status; // ativo ou desativado
     } Quarto;
 
@@ -17,3 +17,4 @@
     void deletar_quartos(void);
     void listar_qua(void);
     void exibe_quartos(Quarto* qua);
+    void quartos(void);

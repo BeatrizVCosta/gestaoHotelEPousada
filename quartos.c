@@ -50,27 +50,18 @@ void grava_quarto(Quarto* qua) //.h
     fclose(fp);
     printf("|\t\tQuarto cadastrado com sucesso!\t\t\t\t|\n|\n");
     printf("|\t\tNumero: %s\n", qua->numero);
-    printf("|\t\tTipo: %c\n", qua->tipo);
+    printf("|\t\tTipo: %s\n", qua->tipo);
     printf("|\t\tStatus: %c\n", qua->status);
 }
 void exibe_quartos(Quarto* qua) {
   char situacao[13];
-  char tip[8];
   if ((qua == NULL) || (qua->status == 'D')) {
     printf("\n\t\tQuarto Inexistente\n");
   } else {
     printf("\n\t\tQuarto Encontrado\n");
     printf("Numero: %s\n", qua->numero);
-    if(qua->tipo == 1) {
-      strcpy(tip, "VIP");
-    } else if (qua->tipo== 2) {
-      strcpy(tip, "Premium");
-    } else if(qua->tipo==3){
-      strcpy(tip, "Basico");
-    }else{
-        strcpy(tip, "Outro");
-    }
-    printf("Tipo: %s\n", tip);
+    quartos();
+    printf("Tipo: %s\n", qua->tipo);
     if (qua->status == 'A') {
       strcpy(situacao, "Ativado");
     } else if (qua->status == 'D') {
@@ -152,4 +143,10 @@ void deletar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();
+}
+
+void quartos(void){
+  printf("1-VIP");
+  printf(" 2-Premium");
+  printf(" 3-Basico");
 }
