@@ -23,6 +23,8 @@ int main(void){
                     procurar_clientes();
                 }else if(op2=='4'){
                     atualizar_clientes();
+                }else if(op2=='5'){
+                    deletar_clientes();
                 }else{
                     printf("Opcao invalida!");
                 }
