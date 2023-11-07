@@ -4,7 +4,7 @@
 #include "funcionario.h"
 #include "relatorio.h"
 #include "quartos.h"
-#include "reservas.h"
+#include "atendimentos.h"
     char menu_principal();
     void sobre(void);
 
@@ -66,14 +66,12 @@ int main(void){
                 }
             }
         }else if(op=='4'){
-            char op2 = reservas();
+            char op2 = atendimentos();
             while (op2!='0'){
-                op2 = reservas();
+                op2 = atendimentos();
                 if (op2=='1'){
-                    cadastrar_reserva();
-                }else if(op2=='2'){
                     check_in();
-                }else if(op2=='3'){
+                }else if(op2=='2'){
                     check_out();
                 }else{
                     printf("Opcao invalida!");
@@ -114,7 +112,7 @@ char menu_principal(){
     printf("|                         1- Clientes                                  |\n");
     printf("|                         2- Funcionarios                              |\n");
     printf("|                         3- Quartos                                   |\n");
-    printf("|                         4- Reservas                                  |\n");
+    printf("|                         4- Atendimentos                              |\n");
     printf("|                         5- Relatorio                                 |\n");
     printf("|                         6- Sobre                                     |\n");
     printf("------------------------------------------------------------------------\n");
