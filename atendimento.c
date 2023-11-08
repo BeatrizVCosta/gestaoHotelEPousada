@@ -28,7 +28,8 @@ char atendimento(){
     printf("|                         1- Check-in                                  |\n");
     // printf("|                         2- Pesquisar Check-in                        |\n");
     printf("|                         2- Check-out                                 |\n");   
-    printf("|                         3- Listar check-in                           |\n");
+    printf("|                         3- Listar check-in                           |\n");   
+    printf("|                         4- Listar check-out                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -165,6 +166,7 @@ void listar_atendimento(void){
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
+
 void listar_ate(void) {
   FILE* fa;
   Atendimento* ate; 
@@ -370,6 +372,7 @@ void delete_atendimento(char *cpf, char*nome){
           printf("\t\tCPF do cliente:%s\n",ate->CPF);
           printf("\t\tNumero do quarto:%s",ate->numero);
           printf("\t\tTipo do quarto:%s\n",ate->tipo);
+          printf("\t\tData do check-in:%s\n",ate->data_in);
           printf("\n");
           printf("------------------------------------------------------------------------\n");
           printf("|                Digite [1] para fazer o check-out do cliente                     |\n");
@@ -382,6 +385,7 @@ void delete_atendimento(char *cpf, char*nome){
           switch (esc){
             case 1:
               ate->status='D';
+              data_hora(ate->data_out, sizeof(ate->data_out));
               //atualizar quarto
               FILE* fq;
               Quarto* qua;
@@ -439,6 +443,78 @@ void delete_atendimento(char *cpf, char*nome){
   fclose(fa);
   free(ate);
 }
+
+void listar_checkout(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-OUT                             |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_cout();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+
+void listar_cout(void) {
+  FILE* fa;
+  Atendimento* ate; 
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'O') {
+      exibe_cout(ate);
+      
+    }
+  }
+  fclose(fa);
+  free(ate);
+}
+void exibe_cout(Atendimento* ate) {
+  char situacao[13];
+  if ((ate == NULL) || (ate->status == 'O')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Inexistente                        |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    if (ate->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (ate->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("\t\tSituacao do Atendimento: %s\n", situacao);
+    printf("|\t\tData e hora do check-in: %s\n", ate->data_in);
+    printf("|\t\tData e hora do check-out: %s\n", ate->data_out);
+    printf("|\n");
+    printf("|                         Dados do cliente                             |\n");
+    printf("|\n");
+    printf("|\t\tNome: %s\n", ate->nome);
+    printf("|\t\tCPF: %s\n", ate->CPF);
+    printf("|\n");
+    printf("|                          Dados do quarto                             |\n");
+    printf("|\n");
+    printf("|\t\tNumero: %s\n", ate->numero);
+    printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("|\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
+    printf("------------------------------------------------------------------------\n");
+  }
+}
+
+
 
 // void procurar_cin(void){
 //     system("clear||cls");

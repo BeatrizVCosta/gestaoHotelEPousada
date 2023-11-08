@@ -15,6 +15,7 @@
     
     char atendimento(void);
     void exibe_atendimento(Atendimento* ate);
+    void exibe_cout(Atendimento* ate);
 
     void check_in(void);
     void grava_atendimento(Atendimento* ate);
@@ -30,5 +31,7 @@
     void delete_atendimento(char *cpf, char *nome);
     void listar_atendimento(void);
     void listar_ate(void);
+    void listar_checkout(void);
+    void listar_cout(void);
 
     char* data_hora(char* data_hora, size_t tam);
