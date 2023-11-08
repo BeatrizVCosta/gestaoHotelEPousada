@@ -3,12 +3,13 @@
     {
         char CPF[15];
         char nome[100];
-        // data
         char numero[4];
         char tipo[3];
-
+        char data_in[20];
+        char data_out[20];
         char CPF_fun[15];
         char nome_fun[100];
+        char diarias[4];
         char status;
     }Atendimento;
     
@@ -26,4 +27,6 @@
     int busca_quarto_existe(char numero[], char tipo[]);
     int busca_funcionario_existe(char cpf[], char nome[]);
 
-    void delete_atendimento(char *cpf);
+    void delete_atendimento(char *cpf, char *nome);
+    void listar_atendimento(void);
+    void listar_ate(void);

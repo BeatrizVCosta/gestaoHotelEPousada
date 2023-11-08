@@ -2,6 +2,7 @@
 #include <stdlib.h>/*Para o system */
 #include <string.h>
 #include <stdbool.h>
+#include <time.h>
 #include "atendimento.h"
 #include "validacao.h"
 #include "cliente.h"
@@ -17,7 +18,8 @@ char atendimento(){
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Check-in                                  |\n");
     // printf("|                         2- Pesquisar Check-in                        |\n");
-    printf("|                         2- Check-out                                 |\n");
+    printf("|                         2- Check-out                                 |\n");   
+    printf("|                         3- Listar check-in                           |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -33,6 +35,7 @@ void check_in(void){
         printf("------------------------------------------------------------------------\n");
         printf("|                     Nenhum cliente cadastrado!                       |\n");
         printf("------------------------------------------------------------------------\n");
+        printf("Pressione qualquer tecla para continuar...\n");
         getchar();getchar();
         return;
     }
@@ -42,6 +45,7 @@ void check_in(void){
         printf("------------------------------------------------------------------------\n");
         printf("|                     Nenhum quarto cadastrado!                        |\n");
         printf("------------------------------------------------------------------------\n");
+        printf("Pressione qualquer tecla para continuar...\n");
         getchar();getchar();
         return;
     }
@@ -51,6 +55,7 @@ void check_in(void){
         printf("------------------------------------------------------------------------\n");
         printf("|                     Nenhum funcionario cadastrado!                   |\n");
         printf("------------------------------------------------------------------------\n");
+        printf("Pressione qualquer tecla para continuar...\n");
         getchar();getchar();
         return;
     }
@@ -139,6 +144,37 @@ void grava_atendimento(Atendimento* ate){
 
 }
 
+void listar_atendimento(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-IN                              |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_ate();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+void listar_ate(void) {
+  FILE* fa;
+  Atendimento* ate; 
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'D') {
+      exibe_atendimento(ate);
+      
+    }
+  }
+  fclose(fa);
+  free(ate);
+}
+
 
 void exibe_atendimento(Atendimento* ate) {
   char situacao[13];
@@ -160,14 +196,19 @@ void exibe_atendimento(Atendimento* ate) {
     printf("\t\tSituacao do Atendimento: %s\n", situacao);
     printf("------------------------------------------------------------------------\n");
     printf("|                         Dados do cliente                             |\n");
-    printf("------------------------------------------------------------------------\n");
+    printf("\n");
     printf("|\t\tNome: %s\n", ate->nome);
     printf("|\t\tCPF: %s\n", ate->CPF);
     printf("------------------------------------------------------------------------\n");
     printf("|                          Dados do quarto                             |\n");
-    printf("------------------------------------------------------------------------\n");
+    printf("\n");
     printf("|\t\tNumero: %s\n", ate->numero);
     printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("------------------------------------------------------------------------\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
     printf("------------------------------------------------------------------------\n");
   }
 }
@@ -177,19 +218,30 @@ int busca_cliente_existe(char cpf[], char nome[]) {
   Cliente* cli;
   int encontrado=0;
   cli = (Cliente*) malloc(sizeof(Cliente));
-  fc = fopen("clientes.dat", "rb");
+  fc = fopen("clientes.dat", "r+b");
   if (fc == NULL) {
     printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
     printf("\tNao e possivel continuar este programa...\n");
     return 0;
   }
   while(fread(cli, sizeof(Cliente), 1, fc)) {
-    if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A') && (strcmp(cli->CPF, cpf)==0)) {
+    if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')  && (cli->situ == 'D')&& (strcmp(cli->CPF, cpf)==0)) {
+       cli->situ='O';
+       printf("%c",cli->situ);
+       fseek(fc, -1 * (long)sizeof(Cliente), SEEK_CUR);
+       fwrite(cli, sizeof(Cliente), 1, fc);
+       fclose(fc);
+       free(cli);
        encontrado=1;
        return 1;
     }
   }
-  if(!encontrado){
+  if((strcmp(cli->nome, nome)==0) && (cli->status == 'A')&& (cli->situ == 'O')&& (strcmp(cli->CPF, cpf)==0)) {
+       printf("------------------------------------------------------------------------\n");
+       printf("|                      Cliente ja fez um check-in!                    |\n");
+       printf("------------------------------------------------------------------------\n");
+       return 0;
+    }else if(!encontrado){
     return 0;
   }
   fclose(fc);
@@ -224,8 +276,7 @@ int busca_quarto_existe(char numero[], char tipo[]) {
        printf("|                         Quarto ocupado!                               |\n");
        printf("------------------------------------------------------------------------\n");
        return 0;
-    }
-  if(!encontrado){ 
+    }else if(!encontrado){ 
     printf("------------------------------------------------------------------------\n");
     printf("|                     Quarto nao existente!                            |\n");
     printf("------------------------------------------------------------------------\n");
@@ -264,31 +315,39 @@ int busca_funcionario_existe(char cpf[], char nome[]) {
 void check_out(void){
     system("clear||cls");
     char cpf[15];
+    char nome[100];
     printf("------------------------------------------------------------------------\n");
     printf("|                            CHECK-OUT                                 |\n");
     printf("------------------------------------------------------------------------\n");
+    FILE *fa;
+    fa=fopen("atendimentos.dat","rb");
+    if(fa==NULL){   
+        printf("------------------------------------------------------------------------\n");
+        printf("|                     Nenhum check-in cadastrado!                      |\n");
+        printf("------------------------------------------------------------------------\n");
+        printf("Pressione qualquer tecla para continuar...\n");
+        getchar();getchar();
+        return;
+    }
+    printf("                 Dados do cliente do check-in:\n\n");
     ler_cpf(cpf);
-    delete_atendimento(cpf);
+    ler_nome(nome);
+    delete_atendimento(cpf,nome);
 
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();
 }
-void delete_atendimento(char *cpf){
+
+void delete_atendimento(char *cpf, char*nome){
   FILE* fa;
   Atendimento* ate;
   int encontra=0;
   int esc;
   ate=(Atendimento*)malloc(sizeof(Atendimento));
   fa=fopen("atendimentos.dat","r+b");
-  if (fa==NULL){
-    printf("------------------------------------------------------------------------\n");
-    printf("|                    Nenhum check-in cadastrado!                       |\n");
-    printf("------------------------------------------------------------------------\n");
-    return;
-  }
   while (fread(ate, sizeof(Atendimento), 1, fa)) {
-    if ((strcmp(ate->CPF, cpf) == 0) && (ate->status == 'A')){
+    if ((strcmp(ate->CPF, cpf) == 0) && (strcmp(ate->nome, nome) == 0) &&  (ate->status == 'A')){
       encontra=1;
         while(esc!=0){
           system("clear||cls");
@@ -302,7 +361,7 @@ void delete_atendimento(char *cpf){
           printf("\t\tTipo do quarto:%s\n",ate->tipo);
           printf("\n");
           printf("------------------------------------------------------------------------\n");
-          printf("|                Digite [1] para deletar o cliente                     |\n");
+          printf("|                Digite [1] para fazer o check-out do cliente                     |\n");
           printf("|                Digite [0] para sair                                  |\n");
           printf("------------------------------------------------------------------------\n");
           printf("\t\tConfirmar:");
@@ -312,6 +371,35 @@ void delete_atendimento(char *cpf){
           switch (esc){
             case 1:
               ate->status='D';
+              //atualizar quarto
+              FILE* fq;
+              Quarto* qua;
+              qua = (Quarto*) malloc(sizeof(Quarto));
+              fq = fopen("quartos.dat", "r+b");
+                while(fread(qua, sizeof(Quarto), 1, fq)) {
+                  if ((strcmp(ate->numero, qua->numero)==0) && (qua->status == 'A')&& (qua->livre == 'O') && (strcmp(ate->tipo, qua->tipo)==0)) {
+                    qua->livre='D';
+                    fseek(fq, -1L * (long)sizeof(Quarto), SEEK_CUR);
+                    fwrite(qua, sizeof(Quarto), 1, fq);
+                    fclose(fq);
+                    free(qua);
+                  }
+                }
+
+              //atualizar cliente
+              FILE* fc;
+              Cliente* cli;
+              cli = (Cliente*) malloc(sizeof(Cliente));
+              fc = fopen("clientes.dat", "r+b");
+              while(fread(cli, sizeof(Cliente), 1, fc)) {
+                  if ((strcmp(ate->nome, cli->nome)==0) && (cli->status == 'A')  && (cli->situ == 'O')&& (strcmp(ate->CPF, cli->CPF)==0)) {
+                  cli->situ='D';
+                  fseek(fc, -1L * (long)sizeof(Cliente), SEEK_CUR);
+                  fwrite(cli, sizeof(Cliente), 1, fc);
+                  fclose(fc);
+                  free(cli);
+                  }
+              }
               printf("------------------------------------------------------------------------\n");
               printf("|                     Check-out realizado com sucesso!                 |\n");
               printf("------------------------------------------------------------------------\n");

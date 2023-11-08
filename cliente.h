@@ -7,6 +7,7 @@
     int mes[2];
     int ano[4];
     char status; // A-ativo ou D-desativado
+    char situ; //Desocupado ou ocupado - para verificar se o cliente ja fez check-in antes
     } Cliente;
     // funções
     char menu_clientes();

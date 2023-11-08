@@ -34,6 +34,7 @@ void cadastrar_clientes(void){
     ler_email(cli->email);
     ler_cpf(cli->CPF);
     cli->status='A';
+    cli->situ='D';
     printf("------------------------------------------------------------------------\n");
     grava_cliente(cli);
     printf("------------------------------------------------------------------------\n");
@@ -119,6 +120,7 @@ void exibe_cliente(Cliente* cli) {
       strcpy(situacao, "Inexistente");
     }
     printf("Situacao do cliente: %s\n", situacao);
+    printf("Situacao do cliente: %c\n", cli->situ);
   }
 }
 

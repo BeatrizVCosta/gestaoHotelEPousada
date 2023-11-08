@@ -73,6 +73,8 @@ int main(void){
                     check_in();
                 }else if(op2=='2'){
                     check_out();
+                }else if(op2=='3'){
+                    listar_atendimento();
                 }else{
                     printf("Opcao invalida!");
                 }
