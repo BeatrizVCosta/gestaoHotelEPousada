@@ -169,7 +169,8 @@ void listar_atendimento(void){
 
 void listar_ate(void) {
   FILE* fa;
-  Atendimento* ate; 
+  Atendimento* ate;
+  int aux; 
   ate = (Atendimento*) malloc(sizeof(Atendimento));
   fa = fopen("atendimentos.dat", "rb");
   if (fa == NULL) {
@@ -181,8 +182,14 @@ void listar_ate(void) {
   while(fread(ate, sizeof(Atendimento), 1, fa)) {
     if (ate->status != 'D') {
       exibe_atendimento(ate);
+      aux=aux+1;
       
     }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-IN EM ABERTO                      |\n");
+    printf("------------------------------------------------------------------------\n");
   }
   fclose(fa);
   free(ate);
@@ -458,6 +465,7 @@ void listar_checkout(void){
 void listar_cout(void) {
   FILE* fa;
   Atendimento* ate; 
+  int aux;
   ate = (Atendimento*) malloc(sizeof(Atendimento));
   fa = fopen("atendimentos.dat", "rb");
   if (fa == NULL) {
@@ -468,9 +476,15 @@ void listar_cout(void) {
   }
   while(fread(ate, sizeof(Atendimento), 1, fa)) {
     if (ate->status != 'O') {
+      aux=aux+1;
       exibe_cout(ate);
       
     }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
+    printf("------------------------------------------------------------------------\n");
   }
   fclose(fa);
   free(ate);
