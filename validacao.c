@@ -200,13 +200,13 @@ void ler_cpf(char cpf[]) {
     int c;
     bool v=true,f=false;
     while (v) {
-        printf("\tDigite o seu CPF: ");
+        printf("\tDigite o CPF: ");
         scanf("%s", cpf);
         c = validarCPF(cpf);
         if (c == 1) {
             v=f;
         } else if (c == 0) {
-            printf("CPF inválido!\n");
+            printf("\tCPF invalido!\n");
         }
     }
 }

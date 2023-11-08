@@ -100,6 +100,7 @@ Cliente* busca_cliente(void) {
   fclose(fc);
   return NULL;
 }
+
 void exibe_cliente(Cliente* cli) {
   char situacao[13];
   if ((cli == NULL) || (cli->status == 'D')) {
@@ -120,6 +121,7 @@ void exibe_cliente(Cliente* cli) {
     printf("Situacao do cliente: %s\n", situacao);
   }
 }
+
 void listar_clientes(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
