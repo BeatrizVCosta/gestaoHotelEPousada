@@ -39,9 +39,9 @@ void ler_cargo(char* cargo){
    
 }
 void ler_numero(char* numero){
-    printf("\tDigite o numero do quarto:  ");
+    printf("\tDigite o numero do quarto(XXX):  ");
     fflush(stdin);
-    fgets(numero, 4, stdin);
+    fgets(numero, 5, stdin);
    
 }
 int ler_diaria(void){

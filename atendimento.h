@@ -1,16 +1,17 @@
 
+    #include <stddef.h>
     typedef struct atendimento
     {
         char CPF[15];
         char nome[100];
-        char numero[4];
+        char numero[5];
         char tipo[3];
         char data_in[20];
         char data_out[20];
         char CPF_fun[15];
         char nome_fun[100];
         int valor;
-        char status;
+        char status;// Ativado ou Desativado
     }Atendimento;
     
     char atendimento(void);

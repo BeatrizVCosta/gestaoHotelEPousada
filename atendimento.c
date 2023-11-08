@@ -121,11 +121,9 @@ void check_in(void){
 
     int diaria=0;
     diaria=ler_diaria();
-    printf("%d",diaria);
     int valor;
     valor=ler_valor( ate->tipo, diaria);
     ate->valor=valor;
-    printf("%d",ate->valor);
     //salva as informações do struct
     printf("------------------------------------------------------------------------\n");
     grava_atendimento(ate);
@@ -486,7 +484,7 @@ void listar_cout(void) {
     getchar();
   }
   while(fread(ate, sizeof(Atendimento), 1, fa)) {
-    if (ate->status != 'O') {
+    if (ate->status != 'A') {
       aux=aux+1;
       exibe_cout(ate);
       
@@ -502,9 +500,9 @@ void listar_cout(void) {
 }
 void exibe_cout(Atendimento* ate) {
   char situacao[13];
-  if ((ate == NULL) || (ate->status == 'O')) {
+  if ((ate == NULL) || (ate->status == 'A')) {
     printf("------------------------------------------------------------------------\n");
-    printf("|                       Atendimento Inexistente                        |\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
     printf("------------------------------------------------------------------------\n");
   } else {
     printf("------------------------------------------------------------------------\n");
@@ -520,6 +518,7 @@ void exibe_cout(Atendimento* ate) {
     printf("\t\tSituacao do Atendimento: %s\n", situacao);
     printf("|\t\tData e hora do check-in: %s\n", ate->data_in);
     printf("|\t\tData e hora do check-out: %s\n", ate->data_out);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
     printf("|\n");
     printf("|                         Dados do cliente                             |\n");
     printf("|\n");

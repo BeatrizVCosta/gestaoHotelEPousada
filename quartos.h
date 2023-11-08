@@ -1,7 +1,7 @@
     // struct
     
     typedef struct quarto {
-    char numero[4];
+    char numero[5];
     char tipo[3];
     char status; // ativo ou desativado
     char livre; //quarto Desocupado ou Ocupado

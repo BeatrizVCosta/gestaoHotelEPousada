@@ -81,12 +81,12 @@ void precos(void){
     printf("\t\t2- Quarto Premium: \n");
     printf("\t\t- Possui uma suite com banheira \n");
     printf("\t\t- Cafe da manha\n");
-    printf("\t\t- Uma cama \n");
+    printf("\t\t- Duas cama \n");
     printf("\t\t- Preco pernoite: 800  \n\n");
     printf("\t\t3- Quarto Basico: \n");
-    printf("\t\t- Numa suite \n");
+    printf("\t\t- Uma suite \n");
     printf("\t\t- Cafe da manha\n");
-    printf("\t\t- Duas camas \n");
+    printf("\t\t- Uma camas \n");
     printf("\t\t- Preco pernoite: 500  \n");
     // mostrar o preço de todos os tipos de quartos
     printf("------------------------------------------------------------------------\n");

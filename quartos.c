@@ -98,10 +98,10 @@ void procurar_quartos(void){
 Quarto* busca_quartos(void) {
   FILE* fq;
   Quarto* qua;
-  char numero[4];
+  char numero[5];
   printf("\t\tDigite o numero do quarto:  ");
   fflush(stdin);
-  fgets(numero, 4, stdin);
+  fgets(numero, 5, stdin);
   qua = (Quarto*) malloc(sizeof(Quarto));
   fq = fopen("quartos.dat", "rb");
   if (fq == NULL) {
@@ -153,7 +153,7 @@ void listar_qua(void) {
 }
 void atualizar_quartos(void){
     system("clear||cls");
-    char numero[3];
+    char numero[5];
     printf("------------------------------------------------------------------------\n");
     printf("|                      ATUALIZAR  QUARTOS                              |\n");
     printf("------------------------------------------------------------------------\n");
@@ -227,13 +227,12 @@ void att_quarto(char *numero){
 
 void deletar_quartos(void){
     system("clear||cls");
-    char numero[3];
+    char numero[5];
     printf("------------------------------------------------------------------------\n");
     printf("|                      DELETAR QUARTOS                                 |\n");
     printf("------------------------------------------------------------------------\n");
     printf("|                      DIGITE 0 PARA CANCELAR                          |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\tDigite o numero do quarto que deseja deletar:");
     ler_numero(numero);
     delete_quarto(numero);
     printf("------------------------------------------------------------------------\n");
