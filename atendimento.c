@@ -5,6 +5,8 @@
 #include "atendimento.h"
 #include "validacao.h"
 #include "cliente.h"
+#include "quartos.h"
+#include "funcionario.h"
 
 char atendimento(){
     char op2;
@@ -23,11 +25,22 @@ char atendimento(){
 }
 void check_in(void){
     bool v = true, f = false;
-    FILE *fc;
     Atendimento *ate = (Atendimento*) malloc(sizeof(Atendimento));
+    FILE *fc;
     fc=fopen("clientes.dat","rb");
-    if(fc==NULL){
-        printf("Nenhum cliente cadastrado!");
+    if(fc==NULL){   
+        printf("------------------------------------------------------------------------\n");
+        printf("|                     Nenhum cliente cadastrado!                       |\n");
+        printf("------------------------------------------------------------------------\n");
+        getchar();getchar();
+        return;
+    }
+    FILE *fq;
+    fq=fopen("quartos.dat","rb");
+    if(fq==NULL){   
+        printf("------------------------------------------------------------------------\n");
+        printf("|                     Nenhum quarto cadastrado!                        |\n");
+        printf("------------------------------------------------------------------------\n");
         getchar();getchar();
         return;
     }
@@ -35,21 +48,34 @@ void check_in(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                             CHECK-IN                                 |\n");
     printf("------------------------------------------------------------------------\n");
-    //verificar se o cpf digitado esta nos clientes registrados
+    //verifica se o cpf digitado esta nos clientes registrados
     while(v){
         ler_cpf(ate->CPF);
         ler_nome(ate->nome);
         if(busca_cliente_existe(ate->CPF,ate->nome)==1){
              v=f;
         }else{
-            printf("usuário não existente");
+            printf("------------------------------------------------------------------------\n");
+            printf("|                     Cliente nao existente!                            |\n");
+            printf("------------------------------------------------------------------------\n");
         }
     }
-    ler_numero(ate->numero);
-    ler_tipo(ate->tipo);
+     v = true, f = false;
+    //verificar se o numero e tipo digitado esta nos quartos registrados
+    while(v){
+        ler_numero(ate->numero);
+        ler_tipo(ate->tipo);
+        if(busca_quarto_existe(ate->numero,ate->tipo)==1){
+             v=f;
+        }else{
+            printf("------------------------------------------------------------------------\n");
+            printf("|                     Quarto nao existente!                            |\n");
+            printf("------------------------------------------------------------------------\n");
+        }
+    }
+    //salvando o status como ativado
     ate->status='A';
-    //cadastrar as informações do struct
-    // fazer check in
+    //salva as informações do struct
     printf("------------------------------------------------------------------------\n");
     grava_atendimento(ate);
     printf("------------------------------------------------------------------------\n");
@@ -67,7 +93,7 @@ void grava_atendimento(Atendimento* ate){
     }
     fwrite(ate, sizeof(Atendimento), 1, fa);
     fclose(fa);
-    printf("|\t\tCheck-in cadastrado com sucesso!\t\t\t|\n|\n");
+    printf("|                 Check-in cadastrado com sucesso!                     |\n|\n");
     printf("|\t\tStatus: %c\n", ate->status);
     printf("------------------------------------------------------------------------\n");
     printf("|                         Dados do cliente                             |\n");
@@ -118,6 +144,36 @@ int busca_cliente_existe(char cpf[], char nome[]) {
   free(cli);
   return 0;
 }
+
+
+int busca_quarto_existe(char numero[], char tipo[]) {
+  FILE* fq;
+  Quarto* qua;
+  int encontrado=0;
+  qua = (Quarto*) malloc(sizeof(Quarto));
+  fq = fopen("quartos.dat", "rb");
+  if (fq == NULL) {
+    printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
+    printf("\tNao e possivel continuar este programa...\n");
+    return 0;
+  }
+  while(fread(qua, sizeof(Quarto), 1, fq)) {
+    if ((strcmp(qua->numero, numero)==0) && (qua->status == 'A') && (strcmp(qua->tipo, tipo)==0)) {
+       encontrado=1;
+       return 1;
+    }
+  }
+  if(!encontrado){ 
+    printf("------------------------------------------------------------------------\n");
+    printf("|                     Quarto nao existente!                            |\n");
+    printf("------------------------------------------------------------------------\n");
+    return 0;
+  }
+  fclose(fq);
+  free(qua);
+  return 0;
+}
+
 void check_out(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
