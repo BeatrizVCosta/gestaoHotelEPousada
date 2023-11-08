@@ -17,3 +17,4 @@
     void grava_atendimento(Atendimento* ate);
     int busca_cliente_existe(char cpf[], char nome[]);
     int busca_quarto_existe(char numero[], char tipo[]);
+    void delete_atendimento(char *cpf);

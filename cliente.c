@@ -246,10 +246,6 @@ void att_cliente(char *nome){
     printf("Nenhum cliente cadastrado!");
     return;
   }
-  if (fc==NULL){
-    printf("Nenhum cliente cadastrado!");
-    return;
-  }
   while (fread(cli, sizeof(Cliente), 1, fc)) {
     if ((strcmp(cli->nome, nome) == 0) && (cli->status == 'A')){
       encontra=1;

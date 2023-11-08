@@ -137,7 +137,6 @@ int busca_cliente_existe(char cpf[], char nome[]) {
     }
   }
   if(!encontrado){
-    printf("cliente não cadastrado!");
     return 0;
   }
   fclose(fc);
@@ -176,14 +175,80 @@ int busca_quarto_existe(char numero[], char tipo[]) {
 
 void check_out(void){
     system("clear||cls");
+    char cpf[15];
     printf("------------------------------------------------------------------------\n");
     printf("|                            CHECK-OUT                                 |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tEM ANDAMENTO...... \n");
-    // fazer check out
-    //deletar o checkin
+    ler_cpf(cpf);
+    delete_atendimento(cpf);
 
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
+    getchar();
+}
+void delete_atendimento(char *cpf){
+  FILE* fa;
+  Atendimento* ate;
+  int encontra=0;
+  int esc;
+  ate=(Atendimento*)malloc(sizeof(Atendimento));
+  fa=fopen("atendimentos.dat","r+b");
+  if (fa==NULL){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                    Nenhum check-in cadastrado!                       |\n");
+    printf("------------------------------------------------------------------------\n");
+    return;
+  }
+  while (fread(ate, sizeof(Atendimento), 1, fa)) {
+    if ((strcmp(ate->CPF, cpf) == 0) && (ate->status == 'A')){
+      encontra=1;
+        while(esc!=0){
+          system("clear||cls");
+          printf("------------------------------------------------------------------------\n");
+          printf("|                          FAZER CHECK-OUT                             |\n");
+          printf("------------------------------------------------------------------------\n");
+          printf("                 Dados do check-in:\n\n");
+          printf("\t\tNome do cliente:%s",ate->nome);
+          printf("\t\tCPF do cliente:%s\n",ate->CPF);
+          printf("\t\tNumero do quarto:%s",ate->numero);
+          printf("\t\tTipo do quarto:%s\n",ate->tipo);
+          printf("\n");
+          printf("------------------------------------------------------------------------\n");
+          printf("|                Digite [1] para deletar o cliente                     |\n");
+          printf("|                Digite [0] para sair                                  |\n");
+          printf("------------------------------------------------------------------------\n");
+          printf("\t\tConfirmar:");
+          fflush(stdin);
+          scanf("%d",&esc);
+          fflush(stdin);
+          switch (esc){
+            case 1:
+              ate->status='D';
+              printf("------------------------------------------------------------------------\n");
+              printf("|                     Check-out realizado com sucesso!                 |\n");
+              printf("------------------------------------------------------------------------\n");
+              printf("\t\nDigite enter para continuar...");getchar();
+              esc=0;
+              break;
+            case 0:
+              esc=0;
+              break;
+            default:
+              printf("\t\nOpção Invalida!\n");
+              printf("\tDigite enter para continuar...");getchar(); 
+              break;
+            }
+            fseek(fa, -1 * (long)sizeof(Atendimento), SEEK_CUR);
+            fwrite(ate, sizeof(Atendimento), 1, fa);
+          }break;
+      }
+  }
+  if (!encontra){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                      Check-in nao encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    getchar();
+  }
+  fclose(fa);
+  free(ate);
 }
