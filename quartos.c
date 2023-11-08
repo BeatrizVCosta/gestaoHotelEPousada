@@ -43,9 +43,9 @@ void grava_quarto(Quarto* qua) //.h
     fq = fopen("quartos.dat", "ab");
     if (fq == NULL) 
     {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar este programa...\n");
-        exit(1);
+        printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
+        printf("\tNao e possivel continuar este programa...\n");
+        getchar();
     }
     fwrite(qua, sizeof(Quarto), 1, fq);
     fclose(fq);
@@ -138,9 +138,9 @@ void listar_qua(void) {
   qua = (Quarto*) malloc(sizeof(Quarto));
   fq = fopen("quartos.dat", "rb");
   if (fq == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
+    printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
+    printf("\tNao e possivel continuar este programa...\n");
+    getchar();
   }
   while(fread(qua, sizeof(Quarto), 1, fq)) {
     if (qua->status != 'D') {

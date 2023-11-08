@@ -44,9 +44,9 @@ void grava_funcionario(Funcionario* fun){
     fp = fopen("funcionario.dat", "ab");
     if (fp == NULL) 
     {
-        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-        printf("Nao e possivel continuar este programa...\n");
-        exit(1);
+        printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
+        printf("\tNao e possivel continuar este programa...\n");
+        getchar();
     }
     fwrite(fun, sizeof(Funcionario), 1, fp);
     fclose(fp);
@@ -101,7 +101,7 @@ Funcionario* busca_funcionario(void) {
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
-    exit(1);
+    getchar();
   }
   // while(!feof(fp)) {
   //   fread(fun, sizeof(Funcionario), 1, fp);
@@ -132,7 +132,7 @@ void listar_fun(void) {
   if (fp == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
-    exit(1);
+    getchar();
   }
   while(fread(fun, sizeof(Funcionario), 1, fp)) {
     if (fun->status != 'D') {

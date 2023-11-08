@@ -1,5 +1,6 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
+#include "quartos.h"
 #include "relatorio.h"
 
 char relatorio(){
@@ -21,12 +22,39 @@ char relatorio(){
 void quartos_disponiveis(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                       QUARTOS DISPONIVEIS                                |\n");
+    printf("|                       QUARTOS DISPONIVEIS                            |\n");
     printf("------------------------------------------------------------------------\n");
-    printf("\t\t\tEM ANDAMENTO...... \n");
+    listar_quad();
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
+}
+void listar_quad(void) {
+  FILE* fq;
+  Quarto* qua; 
+  int aux;
+  qua = (Quarto*) malloc(sizeof(Quarto));
+  fq = fopen("quartos.dat", "rb");
+  if (fq == NULL) {
+    printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
+    printf("\tNão é possível continuar este programa...\n");
+    getchar();
+  }
+  while(fread(qua, sizeof(Quarto), 1, fq)) {
+    if (qua->livre == 'D' && qua->status != 'D') {
+      exibe_quartos(qua);
+      aux=aux+1;
+      printf("------------------------------------------------------------------------\n");
+    }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM QUARTO DISPONIVEL                       |\n");
+    printf("------------------------------------------------------------------------\n");
+  }
+  
+  fclose(fq);
+  free(qua);
 }
 void relatorio_geral(void){
     system("clear||cls");

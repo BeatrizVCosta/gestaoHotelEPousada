@@ -4,7 +4,7 @@
     char numero[4];
     char tipo[3];
     char status; // ativo ou desativado
-    char livre; //quarto Livre ou Ocupado
+    char livre; //quarto Desocupado ou Ocupado
     } Quarto;
 
 

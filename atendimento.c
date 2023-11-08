@@ -202,18 +202,29 @@ int busca_quarto_existe(char numero[], char tipo[]) {
   Quarto* qua;
   int encontrado=0;
   qua = (Quarto*) malloc(sizeof(Quarto));
-  fq = fopen("quartos.dat", "rb");
+  fq = fopen("quartos.dat", "r+b");
   if (fq == NULL) {
     printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
     printf("\tNao e possivel continuar este programa...\n");
     return 0;
   }
   while(fread(qua, sizeof(Quarto), 1, fq)) {
-    if ((strcmp(qua->numero, numero)==0) && (qua->status == 'A') && (strcmp(qua->tipo, tipo)==0)) {
+    if ((strcmp(qua->numero, numero)==0) && (qua->status == 'A')&& (qua->livre == 'D') && (strcmp(qua->tipo, tipo)==0)) {
+       qua->livre='O';
+       fseek(fq, -1L * (long)sizeof(Quarto), SEEK_CUR);
+       fwrite(qua, sizeof(Quarto), 1, fq);
+         fclose(fq);
+        free(qua);
        encontrado=1;
        return 1;
     }
   }
+  if ((strcmp(qua->numero, numero)==0) && (qua->status == 'A')&& (qua->livre == 'O') && (strcmp(qua->tipo, tipo)==0)) {
+       printf("------------------------------------------------------------------------\n");
+       printf("|                         Quarto ocupado!                               |\n");
+       printf("------------------------------------------------------------------------\n");
+       return 0;
+    }
   if(!encontrado){ 
     printf("------------------------------------------------------------------------\n");
     printf("|                     Quarto nao existente!                            |\n");

@@ -138,8 +138,9 @@ void listar_cli(void) {
   fc = fopen("clientes.dat", "rb");
   if (fc == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Não é possível continuar este programa...\n");
-    exit(1);
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
   }
   while(fread(cli, sizeof(Cliente), 1, fc)) {
     if (cli->status != 'D') {
