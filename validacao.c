@@ -1,6 +1,7 @@
 #include <stdio.h>/* Para o printf */
 #include <ctype.h>
 #include <string.h>
+#include "atendimento.h"
 #include "validacao.h"
 #include <stdbool.h>
 
@@ -42,6 +43,32 @@ void ler_numero(char* numero){
     fflush(stdin);
     fgets(numero, 4, stdin);
    
+}
+int ler_diaria(void){
+    int diaria;
+    printf("\tDigite o numero de diarias:  ");
+    fflush(stdin);
+    scanf("%d", &diaria);
+    return diaria;
+}
+
+int ler_valor(char* tipo, int diaria){
+    int valor;
+    if ((strcmp(tipo, "1")==0)){
+        int preco=1200;
+        valor=diaria*preco;
+        return valor;
+    }else if((strcmp(tipo, "2")==0)){
+        int preco=800;
+        valor=diaria*preco;
+        return valor;
+    }else if((strcmp(tipo, "3")==0)){
+        int preco=500;
+        valor=diaria*preco;
+        return valor;
+    }else{
+        return 0;
+    }
 }
 void ler_tipo(char* tipo){
     int t;  

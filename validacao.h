@@ -14,3 +14,6 @@
     void removerCaracteresNaoNumericos(char cpf[]);
     int validarCPF(char cpf[]);
     void ler_cpf(char cpf[]);
+
+    int ler_valor(char* tipo, int diaria);
+    int ler_diaria(void);

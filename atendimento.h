@@ -9,7 +9,7 @@
         char data_out[20];
         char CPF_fun[15];
         char nome_fun[100];
-        char diarias[4];
+        int valor;
         char status;
     }Atendimento;
     

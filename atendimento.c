@@ -116,7 +116,16 @@ void check_in(void){
     }
     //salvando o status como ativado
     ate->status='A';
+    //salvando a data e hora do check-in
     data_hora(ate->data_in, sizeof(ate->data_in));
+
+    int diaria=0;
+    diaria=ler_diaria();
+    printf("%d",diaria);
+    int valor;
+    valor=ler_valor( ate->tipo, diaria);
+    ate->valor=valor;
+    printf("%d",ate->valor);
     //salva as informações do struct
     printf("------------------------------------------------------------------------\n");
     grava_atendimento(ate);
@@ -138,6 +147,7 @@ void grava_atendimento(Atendimento* ate){
     printf("|                 Check-in cadastrado com sucesso!                     |\n|\n");
     printf("|\t\tStatus: %c\n", ate->status);
     printf("|\t\tData e hora: %s\n", ate->data_in);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
     printf("------------------------------------------------------------------------\n");
     printf("|                         Dados do cliente                             |\n");
     printf("------------------------------------------------------------------------\n");
@@ -215,6 +225,7 @@ void exibe_atendimento(Atendimento* ate) {
     }
     printf("\t\tSituacao do Atendimento: %s\n", situacao);
     printf("|\t\tData e hora: %s\n", ate->data_in);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
     printf("|\n");
     printf("|                         Dados do cliente                             |\n");
     printf("|\n");
