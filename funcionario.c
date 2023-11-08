@@ -39,8 +39,7 @@ void cadastrar_funcionarios(void){
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();
 }
-void grava_funcionario(Funcionario* fun) //.h
-{
+void grava_funcionario(Funcionario* fun){
     FILE* fp;
     fp = fopen("funcionario.dat", "ab");
     if (fp == NULL) 

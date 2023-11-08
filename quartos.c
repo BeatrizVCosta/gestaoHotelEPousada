@@ -39,16 +39,16 @@ void cadastrar_quartos(void){
 }
 void grava_quarto(Quarto* qua) //.h
 {
-    FILE* fp;
-    fp = fopen("quartos.dat", "ab");
-    if (fp == NULL) 
+    FILE* fq;
+    fq = fopen("quartos.dat", "ab");
+    if (fq == NULL) 
     {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
         exit(1);
     }
-    fwrite(qua, sizeof(Quarto), 1, fp);
-    fclose(fp);
+    fwrite(qua, sizeof(Quarto), 1, fq);
+    fclose(fq);
     printf("|\t\tQuarto cadastrado com sucesso!\t\t\t\t|\n|\n");
     printf("|\t\tNumero: %s\n", qua->numero);
     printf("|\t\tTipo: %s\n", qua->tipo);
@@ -96,29 +96,29 @@ void procurar_quartos(void){
     getchar();
 }
 Quarto* busca_quartos(void) {
-  FILE* fp;
+  FILE* fq;
   Quarto* qua;
   char numero[4];
   printf("\t\tDigite o numero do quarto:  ");
   fflush(stdin);
   fgets(numero, 4, stdin);
   qua = (Quarto*) malloc(sizeof(Quarto));
-  fp = fopen("quartos.dat", "rb");
-  if (fp == NULL) {
+  fq = fopen("quartos.dat", "rb");
+  if (fq == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     getchar();
   }
-  // while(!feof(fp)) {
-  //   fread(fun, sizeof(Funcionario), 1, fp);
-    while(fread(qua, sizeof(Quarto), 1, fp)){
+  // while(!feof(fq)) {
+  //   fread(fun, sizeof(Funcionario), 1, fq);
+    while(fread(qua, sizeof(Quarto), 1, fq)){
     if ((strcmp(qua->numero, numero)==0) && (qua->status == 'A')) {
-      // fclose(fp);
+      // fclose(fq);
       // return fun;
       exibe_quartos(qua);
     }
   }
-  fclose(fp);
+  fclose(fq);
   return NULL;
 }
 
@@ -133,22 +133,22 @@ void listar_quartos(void){
     getchar();
 }
 void listar_qua(void) {
-  FILE* fp;
+  FILE* fq;
   Quarto* qua; 
   qua = (Quarto*) malloc(sizeof(Quarto));
-  fp = fopen("quartos.dat", "rb");
-  if (fp == NULL) {
+  fq = fopen("quartos.dat", "rb");
+  if (fq == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
     exit(1);
   }
-  while(fread(qua, sizeof(Quarto), 1, fp)) {
+  while(fread(qua, sizeof(Quarto), 1, fq)) {
     if (qua->status != 'D') {
       exibe_quartos(qua);
       printf("------------------------------------------------------------------------\n");
     }
   }
-  fclose(fp);
+  fclose(fq);
   free(qua);
 }
 void atualizar_quartos(void){
@@ -164,21 +164,21 @@ void atualizar_quartos(void){
     getchar();
 }
 void att_quarto(char *numero){
-  FILE* fp;
+  FILE* fq;
   Quarto* qua;
   int encontra=0;
   int esc;
   qua=(Quarto*)malloc(sizeof(Quarto));
-  fp=fopen("quartos.dat","r+b");
-  if (fp==NULL){
+  fq=fopen("quartos.dat","r+b");
+  if (fq==NULL){
     printf("\tNenhum quarto cadastrado!");
     return;
   }
-  if (fp==NULL){
+  if (fq==NULL){
     printf("\tNenhum quarto cadastrado!");
     return;
   }
-  while (fread(qua, sizeof(Quarto), 1, fp)) {
+  while (fread(qua, sizeof(Quarto), 1, fq)) {
     if ((strcmp(qua->numero, numero) == 0) && (qua->status == 'A')){
       encontra=1;
         while(esc!=0){
@@ -213,15 +213,15 @@ void att_quarto(char *numero){
               printf("\tDigite enter para continuar...");getchar(); 
               break;
             }
-            fseek(fp, -1 * (long)sizeof(Quarto), SEEK_CUR);
-            fwrite(qua, sizeof(Quarto), 1, fp);
+            fseek(fq, -1 * (long)sizeof(Quarto), SEEK_CUR);
+            fwrite(qua, sizeof(Quarto), 1, fq);
           }break;
       }
   }
   if (!encontra){
     printf("\t\tQuarto não encontrado!");
   }
-  fclose(fp);
+  fclose(fq);
   free(qua);
 }
 
@@ -241,21 +241,21 @@ void deletar_quartos(void){
     getchar();
 }
 void delete_quarto(char *numero){
-  FILE* fp;
+  FILE* fq;
   Quarto* qua;
   int encontra=0;
   int esc;
   qua=(Quarto*)malloc(sizeof(Quarto));
-  fp=fopen("quartos.dat","r+b");
-  if (fp==NULL){
+  fq=fopen("quartos.dat","r+b");
+  if (fq==NULL){
     printf("\tNenhum quarto cadastrado!");
     return;
   }
-  if (fp==NULL){
+  if (fq==NULL){
     printf("\tNenhum quarto cadastrado!");
     return;
   }
-  while (fread(qua, sizeof(Quarto), 1, fp)) {
+  while (fread(qua, sizeof(Quarto), 1, fq)) {
     if ((strcmp(qua->numero, numero) == 0) && (qua->status == 'A')){
       encontra=1;
         while(esc!=0){
@@ -291,15 +291,15 @@ void delete_quarto(char *numero){
               printf("\tDigite enter para continuar...");getchar(); 
               break;
             }
-            fseek(fp, -1 * (long)sizeof(Quarto), SEEK_CUR);
-            fwrite(qua, sizeof(Quarto), 1, fp);
+            fseek(fq, -1 * (long)sizeof(Quarto), SEEK_CUR);
+            fwrite(qua, sizeof(Quarto), 1, fq);
           }break;
       }
   }
   if (!encontra){
     printf("\t\tQuarto não encontrado!");
   }
-  fclose(fp);
+  fclose(fq);
   free(qua);
 }
 

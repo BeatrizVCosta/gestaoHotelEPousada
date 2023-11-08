@@ -4,7 +4,7 @@
 #include "funcionario.h"
 #include "relatorio.h"
 #include "quartos.h"
-#include "atendimentos.h"
+#include "atendimento.h"
     char menu_principal();
     void sobre(void);
 
@@ -66,9 +66,9 @@ int main(void){
                 }
             }
         }else if(op=='4'){
-            char op2 = atendimentos();
+            char op2 = atendimento();
             while (op2!='0'){
-                op2 = atendimentos();
+                op2 = atendimento();
                 if (op2=='1'){
                     check_in();
                 }else if(op2=='2'){

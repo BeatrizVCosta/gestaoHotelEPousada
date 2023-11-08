@@ -41,18 +41,17 @@ void cadastrar_clientes(void){
     getchar();getchar();
     
 }
-void grava_cliente(Cliente* cli) //.h
-{
-    FILE* fp;
-    fp = fopen("clientes.dat", "ab");
-    if (fp == NULL) 
+void grava_cliente(Cliente* cli){
+    FILE* fc;
+    fc = fopen("clientes.dat", "ab");
+    if (fc == NULL) 
     {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
-        exit(1);
+        getchar();
     }
-    fwrite(cli, sizeof(Cliente), 1, fp);
-    fclose(fp);
+    fwrite(cli, sizeof(Cliente), 1, fc);
+    fclose(fc);
     printf("|\t\tCliente cadastrado com sucesso!\t\t\t\t|\n|\n");
     printf("|\t\tNome: %s\n", cli->nome);
     printf("|\t\tE-mail: %s\n", cli->email);
@@ -75,29 +74,30 @@ void procurar_clientes(void){
     getchar();
 }
 Cliente* busca_cliente(void) {
-  FILE* fp;
+  FILE* fc;
   Cliente* cli;
   char nome[100];
   printf("\t\tDigite o nome do cliente:  ");
   fflush(stdin);
   fgets(nome, 100, stdin);
   cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("clientes.dat", "rb");
-  if (fp == NULL) {
+  fc = fopen("clientes.dat", "rb");
+  if (fc == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
-    exit(1);
+    // exit(1);
+    getchar();
   }
-  // while(!feof(fp)) {
-    // fread(cli, sizeof(Cliente), 1, fp);
-  while(fread(cli, sizeof(Cliente), 1, fp)) {
+  // while(!feof(fc)) {
+    // fread(cli, sizeof(Cliente), 1, fc);
+  while(fread(cli, sizeof(Cliente), 1, fc)) {
     if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')) {
-      // fclose(fp);
+      // fclose(fc);
       // return cli;
       exibe_cliente(cli);
     }
   }
-  fclose(fp);
+  fclose(fc);
   return NULL;
 }
 void exibe_cliente(Cliente* cli) {
@@ -130,22 +130,22 @@ void listar_clientes(void){
     getchar();getchar();
 }
 void listar_cli(void) {
-  FILE* fp;
+  FILE* fc;
   Cliente* cli; 
   cli = (Cliente*) malloc(sizeof(Cliente));
-  fp = fopen("clientes.dat", "rb");
-  if (fp == NULL) {
+  fc = fopen("clientes.dat", "rb");
+  if (fc == NULL) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Não é possível continuar este programa...\n");
     exit(1);
   }
-  while(fread(cli, sizeof(Cliente), 1, fp)) {
+  while(fread(cli, sizeof(Cliente), 1, fc)) {
     if (cli->status != 'D') {
       exibe_cliente(cli);
       printf("------------------------------------------------------------------------\n");
     }
   }
-  fclose(fp);
+  fclose(fc);
   free(cli);
 }
 void atualizar_clientes(void){
@@ -174,21 +174,21 @@ void deletar_clientes(void){
     getchar();getchar();
 }
 void delete_cliente(char *nome){
-  FILE* fp;
+  FILE* fc;
   Cliente* cli;
   int encontra=0;
   int esc;
   cli=(Cliente*)malloc(sizeof(Cliente));
-  fp=fopen("clientes.dat","r+b");
-  if (fp==NULL){
+  fc=fopen("clientes.dat","r+b");
+  if (fc==NULL){
     printf("Nenhum cliente cadastrado!");
     return;
   }
-  if (fp==NULL){
+  if (fc==NULL){
     printf("Nenhum cliente cadastrado!");
     return;
   }
-  while (fread(cli, sizeof(Cliente), 1, fp)) {
+  while (fread(cli, sizeof(Cliente), 1, fc)) {
     if ((strcmp(cli->nome, nome) == 0) && (cli->status == 'A')){
       encontra=1;
         while(esc!=0){
@@ -223,34 +223,34 @@ void delete_cliente(char *nome){
               printf("\tDigite enter para continuar...");getchar(); 
               break;
             }
-            fseek(fp, -1 * (long)sizeof(Cliente), SEEK_CUR);
-            fwrite(cli, sizeof(Cliente), 1, fp);
+            fseek(fc, -1 * (long)sizeof(Cliente), SEEK_CUR);
+            fwrite(cli, sizeof(Cliente), 1, fc);
           }break;
       }
   }
   if (!encontra){
     printf("Cliente não encontrado!");
   }
-  fclose(fp);
+  fclose(fc);
   free(cli);
 }
 //função adaptada de Matheus Diniz
 void att_cliente(char *nome){
-  FILE* fp;
+  FILE* fc;
   Cliente* cli;
   int encontra=0;
   int esc;
   cli=(Cliente*)malloc(sizeof(Cliente));
-  fp=fopen("clientes.dat","r+b");
-  if (fp==NULL){
+  fc=fopen("clientes.dat","r+b");
+  if (fc==NULL){
     printf("Nenhum cliente cadastrado!");
     return;
   }
-  if (fp==NULL){
+  if (fc==NULL){
     printf("Nenhum cliente cadastrado!");
     return;
   }
-  while (fread(cli, sizeof(Cliente), 1, fp)) {
+  while (fread(cli, sizeof(Cliente), 1, fc)) {
     if ((strcmp(cli->nome, nome) == 0) && (cli->status == 'A')){
       encontra=1;
         while(esc!=0){
@@ -289,14 +289,14 @@ void att_cliente(char *nome){
               printf("Digite enter para continuar...");getchar(); 
               break;
             }
-            fseek(fp, -1 * (long)sizeof(Cliente), SEEK_CUR);
-            fwrite(cli, sizeof(Cliente), 1, fp);
+            fseek(fc, -1 * (long)sizeof(Cliente), SEEK_CUR);
+            fwrite(cli, sizeof(Cliente), 1, fc);
           }break;
       }
   }
   if (!encontra){
     printf("Cliente não encontrado!");
   }
-  fclose(fp);
+  fclose(fc);
   free(cli);
 }
