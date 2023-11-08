@@ -9,6 +9,15 @@
 #include "quartos.h"
 #include "funcionario.h"
 
+char* data_hora(char* data_hora, size_t tam){
+    struct tm current_time;
+    time_t t = time(NULL);
+    current_time = *localtime(&t);
+    strftime(data_hora, tam, "%d-%m-%Y %H:%M:%S", &current_time);
+
+    return data_hora;
+}
+
 char atendimento(){
     char op2;
     system("clear||cls");
@@ -106,6 +115,7 @@ void check_in(void){
     }
     //salvando o status como ativado
     ate->status='A';
+    data_hora(ate->data_in, sizeof(ate->data_in));
     //salva as informações do struct
     printf("------------------------------------------------------------------------\n");
     grava_atendimento(ate);
@@ -126,6 +136,7 @@ void grava_atendimento(Atendimento* ate){
     fclose(fa);
     printf("|                 Check-in cadastrado com sucesso!                     |\n|\n");
     printf("|\t\tStatus: %c\n", ate->status);
+    printf("|\t\tData e hora: %s\n", ate->data_in);
     printf("------------------------------------------------------------------------\n");
     printf("|                         Dados do cliente                             |\n");
     printf("------------------------------------------------------------------------\n");
@@ -194,17 +205,18 @@ void exibe_atendimento(Atendimento* ate) {
       strcpy(situacao, "Inexistente");
     }
     printf("\t\tSituacao do Atendimento: %s\n", situacao);
-    printf("------------------------------------------------------------------------\n");
+    printf("|\t\tData e hora: %s\n", ate->data_in);
+    printf("|\n");
     printf("|                         Dados do cliente                             |\n");
-    printf("\n");
+    printf("|\n");
     printf("|\t\tNome: %s\n", ate->nome);
     printf("|\t\tCPF: %s\n", ate->CPF);
-    printf("------------------------------------------------------------------------\n");
+    printf("|\n");
     printf("|                          Dados do quarto                             |\n");
-    printf("\n");
+    printf("|\n");
     printf("|\t\tNumero: %s\n", ate->numero);
     printf("|\t\tTipo: %s\n", ate->tipo);
-    printf("------------------------------------------------------------------------\n");
+    printf("|\n");
     printf("|                Dados do funcionario que realizou o check-in          |\n");
     printf("\n");
     printf("|\t\tNome: %s\n", ate->nome_fun);
@@ -227,7 +239,6 @@ int busca_cliente_existe(char cpf[], char nome[]) {
   while(fread(cli, sizeof(Cliente), 1, fc)) {
     if ((strcmp(cli->nome, nome)==0) && (cli->status == 'A')  && (cli->situ == 'D')&& (strcmp(cli->CPF, cpf)==0)) {
        cli->situ='O';
-       printf("%c",cli->situ);
        fseek(fc, -1 * (long)sizeof(Cliente), SEEK_CUR);
        fwrite(cli, sizeof(Cliente), 1, fc);
        fclose(fc);

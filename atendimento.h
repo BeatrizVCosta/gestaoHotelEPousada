@@ -30,3 +30,5 @@
     void delete_atendimento(char *cpf, char *nome);
     void listar_atendimento(void);
     void listar_ate(void);
+
+    char* data_hora(char* data_hora, size_t tam);
