@@ -37,6 +37,7 @@ void cadastrar_clientes(void){
     cli->situ='D';
     printf("------------------------------------------------------------------------\n");
     grava_cliente(cli);
+    free(cli);
     printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
