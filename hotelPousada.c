@@ -75,7 +75,6 @@ int main(void){
                     check_out();
                 }else if(op2=='3'){
                     listar_atendimento();
-                }else if(op2=='4'){
                     listar_checkout();
                 }else{
                     printf("Opcao invalida!");
@@ -88,8 +87,12 @@ int main(void){
                 if (op2=='1'){
                     quartos_disponiveis();
                 }else if(op2=='2'){
-                    precos();
+                    listar_atendimento();
                 }else if(op2=='3'){
+                    listar_checkout();
+                }else if(op2=='4'){
+                    precos();
+                }else if(op2=='5'){
                     relatorio_geral();
                 }else{
                     printf("Opcao invalida!");

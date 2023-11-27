@@ -1,7 +1,11 @@
 #include <stdio.h>/* Para o printf */
 #include <stdlib.h>/*Para o system */
+#include <string.h>
+#include <stdbool.h>
+#include <time.h>
 #include "quartos.h"
 #include "relatorio.h"
+#include "atendimento.h"
 
 char relatorio(){
     char op2;
@@ -11,8 +15,10 @@ char relatorio(){
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Consultar quartos disponiveis             |\n");
-    printf("|                         2- Tabela de precos                          |\n");
-    printf("|                         3- Relatorio Geral                           |\n");
+    printf("|                         2- Listar check-in                           |\n");
+    printf("|                         3- Listar check-out                          |\n");
+    printf("|                         4- Tabela de precos                          |\n");
+    printf("|                         5- Relatorio Geral                           |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -56,6 +62,165 @@ void listar_quad(void) {
   fclose(fq);
   free(qua);
 }
+
+void listar_atendimento(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-IN                              |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_ate();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+
+void listar_ate(void) {
+  FILE* fa;
+  Atendimento* ate;
+  int aux; 
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'D') {
+      exibe_atendimento(ate);
+      aux=aux+1;
+      
+    }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-IN EM ABERTO                      |\n");
+    printf("------------------------------------------------------------------------\n");
+  }
+  fclose(fa);
+  free(ate);
+}
+
+
+void exibe_atendimento(Atendimento* ate) {
+  char situacao[13];
+  if ((ate == NULL) || (ate->status == 'D')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Inexistente                        |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    if (ate->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (ate->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("\t\tSituacao do Atendimento: %s\n", situacao);
+    printf("|\t\tData e hora: %s\n", ate->data_in);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
+    printf("|\n");
+    printf("|                         Dados do cliente                             |\n");
+    printf("|\n");
+    printf("|\t\tNome: %s\n", ate->nome);
+    printf("|\t\tCPF: %s\n", ate->CPF);
+    printf("|\n");
+    printf("|                          Dados do quarto                             |\n");
+    printf("|\n");
+    printf("|\t\tNumero: %s\n", ate->numero);
+    printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("|\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
+    printf("------------------------------------------------------------------------\n");
+  }
+}
+
+void listar_checkout(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-OUT                             |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_cout();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+
+void listar_cout(void) {
+  FILE* fa;
+  Atendimento* ate; 
+  int aux;
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'A') {
+      aux=aux+1;
+      exibe_cout(ate);
+      
+    }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
+    printf("------------------------------------------------------------------------\n");
+  }
+  fclose(fa);
+  free(ate);
+}
+void exibe_cout(Atendimento* ate) {
+  char situacao[13];
+  if ((ate == NULL) || (ate->status == 'A')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    if (ate->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (ate->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("\t\tSituacao do Atendimento: %s\n", situacao);
+    printf("|\t\tData e hora do check-in: %s\n", ate->data_in);
+    printf("|\t\tData e hora do check-out: %s\n", ate->data_out);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
+    printf("|\n");
+    printf("|                         Dados do cliente                             |\n");
+    printf("|\n");
+    printf("|\t\tNome: %s\n", ate->nome);
+    printf("|\t\tCPF: %s\n", ate->CPF);
+    printf("|\n");
+    printf("|                          Dados do quarto                             |\n");
+    printf("|\n");
+    printf("|\t\tNumero: %s\n", ate->numero);
+    printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("|\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
+    printf("------------------------------------------------------------------------\n");
+  }
+}
+
+
 void relatorio_geral(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
