@@ -76,6 +76,8 @@ int main(void){
                 }else if(op2=='3'){
                     buscar_cin();
                 }else if(op2=='4'){
+                    buscar_cout();
+                }else if(op2=='5'){
                     listar_atendimento();
                     listar_checkout();
                 }else{

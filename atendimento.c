@@ -27,8 +27,9 @@ char atendimento(){
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Check-in                                  |\n");
     printf("|                         2- Check-out                                 |\n");
-    printf("|                         3- Buscar check-in                           |\n");   
-    printf("|                         4- Listar tudo                               |\n");
+    printf("|                         3- Buscar check-in                           |\n");
+    printf("|                         4- Buscar check-out                          |\n");   
+    printf("|                         5- Listar tudo                               |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -421,11 +422,7 @@ void listar_ate(void) {
 }
 void exibe_atendimento(Atendimento* ate) {
   char situacao[13];
-  if ((ate == NULL) || (ate->status == 'D')) {
-    printf("------------------------------------------------------------------------\n");
-    printf("|                       Atendimento Inexistente                        |\n");
-    printf("------------------------------------------------------------------------\n");
-  } else {
+  if ((ate->status == 'A')){
     printf("------------------------------------------------------------------------\n");
     printf("|                       Atendimento Encontrado                         |\n");
     printf("------------------------------------------------------------------------\n");
@@ -497,11 +494,7 @@ void listar_cout(void) {
 }
 void exibe_cout(Atendimento* ate) {
   char situacao[13];
-  if ((ate == NULL) || (ate->status == 'A')) {
-    printf("------------------------------------------------------------------------\n");
-    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
-    printf("------------------------------------------------------------------------\n");
-  } else {
+  if ((ate->status == 'D')){
     printf("------------------------------------------------------------------------\n");
     printf("|                       Atendimento Encontrado                         |\n");
     printf("------------------------------------------------------------------------\n");
@@ -538,13 +531,11 @@ void exibe_cout(Atendimento* ate) {
 void buscar_cin(void){
     system("clear||cls");
     printf("------------------------------------------------------------------------\n");
-    printf("|                         BUSCAR CHECK-IN                              |\n");
+    printf("|                   BUSCAR CHECK-IN POR CPF DO CLIENTE                 |\n");
     printf("------------------------------------------------------------------------\n");
-    char* cpf;
+    char cpf[15] ;
     ler_cpf(cpf);
     buscar_checkin_por_cpf(cpf);
-    free(cpf);
-    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
@@ -568,7 +559,45 @@ void buscar_checkin_por_cpf(char* cpf) {
     }
     if (aux==0){
         printf("|--------------------------------------------------------------------|\n");
-        printf("|                  NENHUM CHECK-IN ENCONTRADO PARA ESTE CPF           |\n");
+        printf("|                  NENHUM CHECK-IN ENCONTRADO PARA ESTE CPF          |\n");
+        printf("|--------------------------------------------------------------------|\n");
+    }
+    fclose(fa);
+    free(ate);
+}
+
+void buscar_cout(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                   BUSCAR CHECK-OUT POR CPF DO CLIENTE                 |\n");
+    printf("------------------------------------------------------------------------\n");
+    char cpf[15] ;
+    ler_cpf(cpf);
+    buscar_checkout_por_cpf(cpf);
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+
+void buscar_checkout_por_cpf(char* cpf) {
+    FILE* fa;
+    Atendimento* ate; 
+    int aux = 0;
+    ate = (Atendimento*) malloc(sizeof(Atendimento));
+    fa = fopen("atendimentos.dat", "rb");
+    if (fa == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        getchar();
+    }
+    while(fread(ate, sizeof(Atendimento), 1, fa)) {
+        if (strcmp(ate->CPF, cpf) == 0) {
+            aux++;
+            exibe_cout(ate);
+        }
+    }
+    if (aux==0){
+        printf("|--------------------------------------------------------------------|\n");
+        printf("|                  NENHUM CHECK-OUT ENCONTRADO PARA ESTE CPF         |\n");
         printf("|--------------------------------------------------------------------|\n");
     }
     fclose(fa);

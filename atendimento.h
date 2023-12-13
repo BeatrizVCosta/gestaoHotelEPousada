@@ -43,3 +43,6 @@
 
     void buscar_checkin_por_cpf(char* cpf);
     void buscar_cin(void);
+
+    void buscar_checkout_por_cpf(char* cpf);
+    void buscar_cout(void);
