@@ -143,6 +143,7 @@ void listar_qua(void) {
     printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
     printf("\tNao e possivel continuar este programa...\n");
     getchar();
+    return;
   }
   while(fread(qua, sizeof(Quarto), 1, fq)) {
     if (qua->status != 'D') {

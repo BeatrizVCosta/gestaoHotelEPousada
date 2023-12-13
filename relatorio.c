@@ -45,6 +45,7 @@ void listar_quad(void) {
     printf("\tOps! Ocorreu um erro na abertura do arquivo!\n");
     printf("\tNão é possível continuar este programa...\n");
     getchar();
+    return;
   }
   while(fread(qua, sizeof(Quarto), 1, fq)) {
     if (qua->livre == 'D' && qua->status != 'D') {
@@ -97,6 +98,7 @@ void listar_ateT(void) {
     printf("Nao e possivel continuar este programa...\n");
     // exit(1);
     getchar();
+    return;
   }
   while(fread(ate, sizeof(Atendimento), 1, fa)) {
     if (ate->status != 'D') {
@@ -164,6 +166,7 @@ void listar_coutT(void) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
         getchar();
+        return;
     }
     while(fread(ate, sizeof(Atendimento), 1, fa)) {
         if (ate->status != 'A') {

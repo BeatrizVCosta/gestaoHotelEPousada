@@ -153,6 +153,7 @@ void listar_fun(void) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     getchar();
+    return;
   }
   while(fread(fun, sizeof(Funcionario), 1, fp)) {
     if (fun->status != 'D') {

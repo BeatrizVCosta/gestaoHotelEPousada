@@ -146,6 +146,7 @@ void listar_cli(void) {
     printf("Nao e possivel continuar este programa...\n");
     // exit(1);
     getchar();
+    return;
   }
   while(fread(cli, sizeof(Cliente), 1, fc)) {
     if (cli->status != 'D') {
