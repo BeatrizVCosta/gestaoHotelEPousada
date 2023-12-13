@@ -19,6 +19,7 @@
     void deletar_funcionarios(void);
     void listar_fun(void);
     void exibe_funcionario(Funcionario* fun);
+    void exibe_funcionarioT(Funcionario* fun);
     void delete_funcionario(char *nome);
     void att_funcionario(char *nome);
     Funcionario* busca_funcionario(void);

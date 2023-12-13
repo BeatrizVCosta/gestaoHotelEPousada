@@ -130,7 +130,9 @@ void listar_clientes(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      TODOS OS CLIENTES                               |\n");
     printf("------------------------------------------------------------------------\n");
+    printf("| Nome do cliente                |    CPF do cliente                   |\n");
     listar_cli();
+    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
 }
@@ -147,12 +149,28 @@ void listar_cli(void) {
   }
   while(fread(cli, sizeof(Cliente), 1, fc)) {
     if (cli->status != 'D') {
-      exibe_cliente(cli);
-      printf("------------------------------------------------------------------------\n");
+      exibe_clienteT(cli);
     }
   }
   fclose(fc);
   free(cli);
+}
+void exibe_clienteT(Cliente* cli) {
+  if ((cli == NULL) || (cli->status == 'D')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Cliente Inexistente                        |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {    
+    char nome[100];
+    strncpy (nome,cli->nome,strlen(cli->nome));
+    for (int i = 0; i < 100; i++){
+      if (nome[i]=='\n'){
+        nome[i]='\0';
+      }  
+    }
+    printf("|----------------------------------------------------------------------|\n");
+    printf("| %-27s    | %-31s     |\n", nome, cli->CPF);
+  }
 }
 void atualizar_clientes(void){
     system("clear||cls");

@@ -28,8 +28,7 @@ char atendimento(){
     printf("|                         1- Check-in                                  |\n");
     printf("|                         2- Check-out                                 |\n");
     printf("|                         3- Buscar check-in                           |\n");
-    printf("|                         4- Buscar check-out                          |\n");   
-    printf("|                         5- Listar tudo                               |\n");
+    printf("|                         4- Buscar check-out                          |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -383,43 +382,6 @@ void delete_atendimento(char *cpf, char*nome){
   free(ate);
 }
 
-void listar_atendimento(void){
-    system("clear||cls");
-    printf("------------------------------------------------------------------------\n");
-    printf("|                         LISTAR CHECK-IN                              |\n");
-    printf("------------------------------------------------------------------------\n");
-    listar_ate();
-    printf("------------------------------------------------------------------------\n");
-    printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
-}
-void listar_ate(void) {
-  FILE* fa;
-  Atendimento* ate;
-  int aux; 
-  ate = (Atendimento*) malloc(sizeof(Atendimento));
-  fa = fopen("atendimentos.dat", "rb");
-  if (fa == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    // exit(1);
-    getchar();
-  }
-  while(fread(ate, sizeof(Atendimento), 1, fa)) {
-    if (ate->status != 'D') {
-      exibe_atendimento(ate);
-      aux=aux+1;
-      
-    }
-  }
-  if (aux==0){
-    printf("------------------------------------------------------------------------\n");
-    printf("|                       NENHUM CHECK-IN EM ABERTO                      |\n");
-    printf("------------------------------------------------------------------------\n");
-  }
-  fclose(fa);
-  free(ate);
-}
 void exibe_atendimento(Atendimento* ate) {
   char situacao[13];
   if ((ate->status == 'A')){
@@ -455,43 +417,6 @@ void exibe_atendimento(Atendimento* ate) {
   }
 }
 
-void listar_checkout(void){
-    system("clear||cls");
-    printf("------------------------------------------------------------------------\n");
-    printf("|                         LISTAR CHECK-OUT                             |\n");
-    printf("------------------------------------------------------------------------\n");
-    listar_cout();
-    printf("------------------------------------------------------------------------\n");
-    printf("Pressione qualquer tecla para continuar...\n");
-    getchar();getchar();
-}
-void listar_cout(void) {
-  FILE* fa;
-  Atendimento* ate; 
-  int aux;
-  ate = (Atendimento*) malloc(sizeof(Atendimento));
-  fa = fopen("atendimentos.dat", "rb");
-  if (fa == NULL) {
-    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-    printf("Nao e possivel continuar este programa...\n");
-    // exit(1);
-    getchar();
-  }
-  while(fread(ate, sizeof(Atendimento), 1, fa)) {
-    if (ate->status != 'A') {
-      aux=aux+1;
-      exibe_cout(ate);
-      
-    }
-  }
-  if (aux==0){
-    printf("------------------------------------------------------------------------\n");
-    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
-    printf("------------------------------------------------------------------------\n");
-  }
-  fclose(fa);
-  free(ate);
-}
 void exibe_cout(Atendimento* ate) {
   char situacao[13];
   if ((ate->status == 'D')){

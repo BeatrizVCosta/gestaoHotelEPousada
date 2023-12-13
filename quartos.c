@@ -127,7 +127,9 @@ void listar_quartos(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      TODOS OS QUARTOS                                |\n");
     printf("------------------------------------------------------------------------\n");
+    printf("| Numero do quarto              | Tipo do quarto                       |\n");
     listar_qua();
+    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     fflush(stdin);
     getchar();
@@ -144,8 +146,7 @@ void listar_qua(void) {
   }
   while(fread(qua, sizeof(Quarto), 1, fq)) {
     if (qua->status != 'D') {
-      exibe_quartos(qua);
-      printf("------------------------------------------------------------------------\n");
+      exibe_quartosT(qua);
     }
   }
   fclose(fq);

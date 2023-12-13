@@ -63,8 +63,15 @@ void listar_quad(void) {
 }
 
 void exibe_quartosT(Quarto* qua) {
+    char nquarto[5];
+    strncpy (nquarto,qua->numero,strlen(qua->numero));
+    for (int i = 0; i < 5; i++){
+      if (nquarto[i]=='\n'){
+        nquarto[i]='\0';
+      }  
+    }
     printf("|----------------------------------------------------------------------|\n");
-    printf("| %-35s | %-37s |\n", qua->numero, qua->tipo);
+    printf("| %-29s | %-36s |\n", nquarto, qua->tipo);
 }
 
 void listar_atendimentoT(void){
@@ -112,8 +119,15 @@ void exibe_atendimentoT(Atendimento* ate) {
     printf("|                       Atendimento Inexistente                        |\n");
     printf("------------------------------------------------------------------------\n");
   } else {
+    char nome[100];
+    strncpy (nome,ate->nome,strlen(ate->nome));
+    for (int i = 0; i < 100; i++){
+      if (nome[i]=='\n'){
+        nome[i]='\0';
+      }  
+    }
     printf("------------------------------------------------------------------------\n");
-    printf("| %-20s    | %-17s      | %-21s   |\n", ate->nome, ate->CPF, ate->data_in);
+    printf("| %-15s    | %-16s      | %-21s   |\n", nome, ate->CPF, ate->data_in);
   }
 }
 
@@ -171,7 +185,7 @@ void precos(void){
     printf("-----------------------------------------------------------------------------------------\n");
     printf("|                                TABELA DE PRECOS                                       |\n");
     printf("-----------------------------------------------------------------------------------------\n");
-    printf("|   Tipo de Quarto    |   Caracteristicas                           |   Preco Pernoite  |\n");
+    printf("|   Tipo de Quarto    |   Caracteristicas                           |   Preco Diaria    |\n");
     printf("|---------------------|---------------------------------------------|-------------------|\n");
     printf("|  1- Quarto VIP      | Suite com hidromassagem, Cafe da manha,     |                   |\n");
     printf("|                     | Duas camas, Acesso ao massagista do hotel   |   1200            |\n");

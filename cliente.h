@@ -16,8 +16,11 @@
     void atualizar_clientes(void);
     void procurar_clientes(void);
     Cliente* busca_cliente(void);
+    
     void exibe_cliente(Cliente* cli);
+    void exibe_clienteT(Cliente* cli);
     void listar_clientes(void);
+
     void deletar_clientes(void);
     void listar_cli(void);
     void att_cliente(char *nome);

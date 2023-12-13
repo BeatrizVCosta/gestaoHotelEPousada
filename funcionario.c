@@ -120,9 +120,29 @@ void listar_funcionarios(void){
     printf("------------------------------------------------------------------------\n");
     printf("|                      TODOS OS FUNCIONARIOS                           |\n");
     printf("------------------------------------------------------------------------\n");
+    printf("| Nome do funcionario            |    CPF do funcionario               |\n");
+    printf("------------------------------------------------------------------------\n");
     listar_fun();
+    printf("------------------------------------------------------------------------\n");
     printf("Pressione qualquer tecla para continuar...\n");
     getchar();getchar();
+}
+void exibe_funcionarioT(Funcionario* fun) {
+  if ((fun == NULL) || (fun->status == 'D')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Cliente Inexistente                        |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {   
+    char nome[100];
+    strncpy (nome,fun->nome,strlen(fun->nome));
+    for (int i = 0; i < 100; i++){
+      if (nome[i]=='\n'){
+        nome[i]='\0';
+      }  
+    }
+    printf("|----------------------------------------------------------------------|\n");
+    printf("| %-27s    | %-31s     |\n",nome, fun->CPF);
+  }
 }
 void listar_fun(void) {
   FILE* fp;
@@ -136,8 +156,7 @@ void listar_fun(void) {
   }
   while(fread(fun, sizeof(Funcionario), 1, fp)) {
     if (fun->status != 'D') {
-      exibe_funcionario(fun);
-      printf("------------------------------------------------------------------------\n");
+      exibe_funcionarioT(fun);
     }
   }
   fclose(fp);

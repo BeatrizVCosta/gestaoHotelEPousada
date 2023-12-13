@@ -77,9 +77,6 @@ int main(void){
                     buscar_cin();
                 }else if(op2=='4'){
                     buscar_cout();
-                }else if(op2=='5'){
-                    listar_atendimento();
-                    listar_checkout();
                 }else{
                     printf("Opcao invalida!");
                 }
