@@ -26,8 +26,9 @@ char atendimento(){
     printf("------------------------------------------------------------------------\n");
     printf("|                         0- Sair                                      |\n");
     printf("|                         1- Check-in                                  |\n");
-    printf("|                         2- Check-out                                 |\n");   
-    printf("|                         3- Listar tudo                               |\n");
+    printf("|                         2- Check-out                                 |\n");
+    printf("|                         3- Buscar check-in                           |\n");   
+    printf("|                         4- Listar tudo                               |\n");
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
@@ -381,41 +382,195 @@ void delete_atendimento(char *cpf, char*nome){
   free(ate);
 }
 
+void listar_atendimento(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-IN                              |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_ate();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+void listar_ate(void) {
+  FILE* fa;
+  Atendimento* ate;
+  int aux; 
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'D') {
+      exibe_atendimento(ate);
+      aux=aux+1;
+      
+    }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-IN EM ABERTO                      |\n");
+    printf("------------------------------------------------------------------------\n");
+  }
+  fclose(fa);
+  free(ate);
+}
+void exibe_atendimento(Atendimento* ate) {
+  char situacao[13];
+  if ((ate == NULL) || (ate->status == 'D')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Inexistente                        |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    if (ate->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (ate->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("\t\tSituacao do Atendimento: %s\n", situacao);
+    printf("|\t\tData e hora: %s\n", ate->data_in);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
+    printf("|\n");
+    printf("|                         Dados do cliente                             |\n");
+    printf("|\n");
+    printf("|\t\tNome: %s\n", ate->nome);
+    printf("|\t\tCPF: %s\n", ate->CPF);
+    printf("|\n");
+    printf("|                          Dados do quarto                             |\n");
+    printf("|\n");
+    printf("|\t\tNumero: %s\n", ate->numero);
+    printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("|\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
+    printf("------------------------------------------------------------------------\n");
+  }
+}
 
+void listar_checkout(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         LISTAR CHECK-OUT                             |\n");
+    printf("------------------------------------------------------------------------\n");
+    listar_cout();
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+void listar_cout(void) {
+  FILE* fa;
+  Atendimento* ate; 
+  int aux;
+  ate = (Atendimento*) malloc(sizeof(Atendimento));
+  fa = fopen("atendimentos.dat", "rb");
+  if (fa == NULL) {
+    printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+    printf("Nao e possivel continuar este programa...\n");
+    // exit(1);
+    getchar();
+  }
+  while(fread(ate, sizeof(Atendimento), 1, fa)) {
+    if (ate->status != 'A') {
+      aux=aux+1;
+      exibe_cout(ate);
+      
+    }
+  }
+  if (aux==0){
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
+    printf("------------------------------------------------------------------------\n");
+  }
+  fclose(fa);
+  free(ate);
+}
+void exibe_cout(Atendimento* ate) {
+  char situacao[13];
+  if ((ate == NULL) || (ate->status == 'A')) {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       NENHUM CHECK-OUT FEITO                         |\n");
+    printf("------------------------------------------------------------------------\n");
+  } else {
+    printf("------------------------------------------------------------------------\n");
+    printf("|                       Atendimento Encontrado                         |\n");
+    printf("------------------------------------------------------------------------\n");
+    if (ate->status == 'A') {
+      strcpy(situacao, "Ativado");
+    } else if (ate->status == 'D') {
+      strcpy(situacao, "Desativado");
+    } else {
+      strcpy(situacao, "Inexistente");
+    }
+    printf("\t\tSituacao do Atendimento: %s\n", situacao);
+    printf("|\t\tData e hora do check-in: %s\n", ate->data_in);
+    printf("|\t\tData e hora do check-out: %s\n", ate->data_out);
+    printf("|\t\tValor da estadia: %d\n", ate->valor);
+    printf("|\n");
+    printf("|                         Dados do cliente                             |\n");
+    printf("|\n");
+    printf("|\t\tNome: %s\n", ate->nome);
+    printf("|\t\tCPF: %s\n", ate->CPF);
+    printf("|\n");
+    printf("|                          Dados do quarto                             |\n");
+    printf("|\n");
+    printf("|\t\tNumero: %s\n", ate->numero);
+    printf("|\t\tTipo: %s\n", ate->tipo);
+    printf("|\n");
+    printf("|                Dados do funcionario que realizou o check-in          |\n");
+    printf("\n");
+    printf("|\t\tNome: %s\n", ate->nome_fun);
+    printf("|\t\tCPF: %s\n", ate->CPF_fun);
+    printf("------------------------------------------------------------------------\n");
+  }
+}
 
-// void procurar_cin(void){
-//     system("clear||cls");
-//     Atendimento* ate;
-//     printf("------------------------------------------------------------------------\n");
-//     printf("|                       PROCURAR CHECK-IN                              |\n");
-//     printf("------------------------------------------------------------------------\n");
-//     ate=busca_Atendimento();
-//     free(ate); 
-//     printf("------------------------------------------------------------------------\n");
-//     printf("Pressione qualquer tecla para continuar...\n");
-//     getchar();getchar();
-// }
-// Atendimento* busca_Atendimento(void) {
-//   FILE* fa;
-//   Atendimento* ate;
-//   char cpf[15];
-//   printf("\t\tDigite o CPF do cliente:  ");
-//   fflush(stdin);
-//   fgets(cpf, 15, stdin);
-//   printf(cpf);
-//   ate = (Atendimento*) malloc(sizeof(Atendimento));
-//   fa = fopen("atendimentos.dat", "rb");
-//   if (fa == NULL) {
-//     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
-//     printf("Nao e possivel continuar este programa...\n");
-//     getchar();
-//   }
-//   while(fread(ate, sizeof(Atendimento), 1, fa)) {
-//     if ((strcmp(ate->CPF, cpf)==0) && (ate->status == 'A')) {
-//         printf("aaa");
-//       exibe_atendimento(ate);
-//     }
-//   }
-//   fclose(fa);
-//   return NULL;
-// }
+void buscar_cin(void){
+    system("clear||cls");
+    printf("------------------------------------------------------------------------\n");
+    printf("|                         BUSCAR CHECK-IN                              |\n");
+    printf("------------------------------------------------------------------------\n");
+    char* cpf;
+    ler_cpf(cpf);
+    buscar_checkin_por_cpf(cpf);
+    free(cpf);
+    printf("------------------------------------------------------------------------\n");
+    printf("Pressione qualquer tecla para continuar...\n");
+    getchar();getchar();
+}
+
+void buscar_checkin_por_cpf(char* cpf) {
+    FILE* fa;
+    Atendimento* ate; 
+    int aux = 0;
+    ate = (Atendimento*) malloc(sizeof(Atendimento));
+    fa = fopen("atendimentos.dat", "rb");
+    if (fa == NULL) {
+        printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
+        printf("Nao e possivel continuar este programa...\n");
+        getchar();
+    }
+    while(fread(ate, sizeof(Atendimento), 1, fa)) {
+        if (strcmp(ate->CPF, cpf) == 0) {
+            aux++;
+            exibe_atendimento(ate);
+        }
+    }
+    if (aux==0){
+        printf("|--------------------------------------------------------------------|\n");
+        printf("|                  NENHUM CHECK-IN ENCONTRADO PARA ESTE CPF           |\n");
+        printf("|--------------------------------------------------------------------|\n");
+    }
+    fclose(fa);
+    free(ate);
+}

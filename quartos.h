@@ -22,3 +22,4 @@
     void att_quarto(char *numero);
     void delete_quarto(char *numero);
     Quarto* busca_quartos(void);
+    void exibe_quartosT(Quarto* qua);

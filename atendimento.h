@@ -18,6 +18,10 @@
     void exibe_atendimento(Atendimento* ate);
     void exibe_cout(Atendimento* ate);
 
+    
+    void exibe_atendimentoT(Atendimento* ate);
+    void exibe_coutT(Atendimento* ate);
+
     void check_in(void);
     void grava_atendimento(Atendimento* ate);
 
@@ -36,3 +40,6 @@
     void listar_cout(void);
 
     char* data_hora(char* data_hora, size_t tam);
+
+    void buscar_checkin_por_cpf(char* cpf);
+    void buscar_cin(void);
