@@ -27,6 +27,8 @@ int main(void){
                     deletar_clientes();
                 }else{
                     printf("Opcao invalida!");
+                    getchar();
+                    fflush(stdin);
                 }
             }   
         }else if(op=='2'){
@@ -45,6 +47,8 @@ int main(void){
                     deletar_funcionarios();
                 }else{
                     printf("Opcao invalida!");
+                    getchar();
+                    fflush(stdin);
                 }
             } 
         }else if(op=='3'){
@@ -63,6 +67,8 @@ int main(void){
                     deletar_quartos();
                 }else{
                     printf("Opcao invalida!");
+                    getchar();
+                    fflush(stdin);
                 }
             }
         }else if(op=='4'){
@@ -79,6 +85,8 @@ int main(void){
                     buscar_cout();
                 }else{
                     printf("Opcao invalida!");
+                    getchar();
+                    fflush(stdin);
                 }
             }
         }else if(op=='5'){
@@ -95,6 +103,8 @@ int main(void){
                     precos();
                 }else{
                     printf("Opcao invalida!");
+                    getchar();
+                    fflush(stdin);
                 }
             }
         }else if(op=='6'){
@@ -103,6 +113,8 @@ int main(void){
             printf("FIM");
         }else {
             printf("Opcao invalida!");
+            getchar();
+            fflush(stdin);
         }
     op = menu_principal();
     }
