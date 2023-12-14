@@ -476,6 +476,7 @@ void buscar_checkin_por_cpf(char* cpf) {
         printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
         printf("Nao e possivel continuar este programa...\n");
         getchar();
+        return;
     }
     while(fread(ate, sizeof(Atendimento), 1, fa)) {
         if (strcmp(ate->CPF, cpf) == 0) {

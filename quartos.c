@@ -110,6 +110,7 @@ Quarto* busca_quartos(void) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     getchar();
+    return;
   }
   // while(!feof(fq)) {
   //   fread(fun, sizeof(Funcionario), 1, fq);

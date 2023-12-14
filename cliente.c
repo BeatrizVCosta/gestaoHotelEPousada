@@ -91,6 +91,7 @@ Cliente* busca_cliente(void) {
     printf("Nao e possivel continuar este programa...\n");
     // exit(1);
     getchar();
+    return;
   }
   // while(!feof(fc)) {
     // fread(cli, sizeof(Cliente), 1, fc);
