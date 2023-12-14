@@ -27,7 +27,7 @@ int main(void){
                 }else if(op2=='5'){
                     deletar_clientes();
                 }else if(op2=='0'){
-                    printf("");
+                    printf(" ");
                     getchar();
                     fflush(stdin);
                 }else{
@@ -51,7 +51,7 @@ int main(void){
                 }else if(op2=='5'){
                     deletar_funcionarios();
                 }else if(op2=='0'){
-                    printf("");
+                    printf(" ");
                     getchar();
                     fflush(stdin);
                 }else{
@@ -75,7 +75,7 @@ int main(void){
                 }else if(op2=='5'){
                     deletar_quartos();
                 }else if(op2=='0'){
-                    printf("");
+                    printf(" ");
                     getchar();
                     fflush(stdin);
                 }else{
@@ -97,7 +97,7 @@ int main(void){
                 }else if(op2=='4'){
                     buscar_cout();
                 }else if(op2=='0'){
-                    printf("");
+                    printf(" ");
                     getchar();
                     fflush(stdin);
                 }else{
@@ -119,7 +119,7 @@ int main(void){
                 }else if(op2=='4'){
                     precos();
                 }else if(op2=='0'){
-                    printf("");
+                    printf(" ");
                     getchar();
                     fflush(stdin);
                 }else{
