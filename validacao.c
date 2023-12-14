@@ -5,7 +5,13 @@
 #include "validacao.h"
 #include <stdbool.h>
 
-
+// void limpar_buffer(void){
+//   int c;
+//   while ((c = getchar()) != '\n' && c != EOF)
+//   {
+//     // Lê e descarta cada caractere até encontrar uma nova linha ('\n') ou o fim do arquivo (EOF)
+//   }
+// }
 void ler_nome(char* nome){
     int valido;
     do{

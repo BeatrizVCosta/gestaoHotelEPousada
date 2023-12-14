@@ -4,6 +4,7 @@
 #include "funcionario.h"
 #include "relatorio.h"
 #include "quartos.h"
+#include "validacao.h"
 #include "atendimento.h"
     char menu_principal();
     void sobre(void);

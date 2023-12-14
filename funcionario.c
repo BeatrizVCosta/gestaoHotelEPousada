@@ -104,7 +104,7 @@ Funcionario* busca_funcionario(void) {
     printf("Ops! Ocorreu um erro na abertura do arquivo!\n");
     printf("Nao e possivel continuar este programa...\n");
     getchar();
-    return;
+    //return;
   }
   // while(!feof(fp)) {
   //   fread(fun, sizeof(Funcionario), 1, fp);

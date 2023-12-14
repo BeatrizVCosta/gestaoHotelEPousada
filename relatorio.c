@@ -6,6 +6,7 @@
 #include "quartos.h"
 #include "relatorio.h"
 #include "atendimento.h"
+#include "validacao.h"
 
 char relatorio(){
     char op2;

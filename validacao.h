@@ -17,3 +17,5 @@
 
     int ler_valor(char* tipo, int diaria);
     int ler_diaria(void);
+
+    // void limpar_buffer(void);
