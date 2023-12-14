@@ -105,10 +105,15 @@ int verifica_tipo(char * tipo){
 
 int verifica_nome(char* nome) {
     int i, tamanho;
-    tamanho = strlen(nome) - 1;
+    tamanho = strlen(nome);
+
+    // Verifica se o nome é apenas um '\n'
+    if (tamanho == 1 && nome[0] == '\n') {
+        return 1;
+    }
 
     for(i = 0; i < tamanho; i++) {
-        if(!isalpha(nome[i]) && nome[i] != ' ') {
+        if(!isalpha(nome[i]) && nome[i] != ' ' && nome[i] != '\n') {
             return 1;
         }
     }

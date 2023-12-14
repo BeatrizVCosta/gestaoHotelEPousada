@@ -18,6 +18,8 @@ char menu_quartos(){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
+    getchar();
+    fflush(stdin);
     printf("------------------------------------------------------------------------\n");
     return op2;
 }

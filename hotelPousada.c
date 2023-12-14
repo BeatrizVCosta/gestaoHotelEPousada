@@ -124,6 +124,8 @@ char menu_principal(){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op);
+    getchar();
+    fflush(stdin);
     printf("------------------------------------------------------------------------\n");
     return op;
 
