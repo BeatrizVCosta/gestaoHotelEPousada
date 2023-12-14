@@ -26,6 +26,10 @@ int main(void){
                     atualizar_clientes();
                 }else if(op2=='5'){
                     deletar_clientes();
+                }else if(op2=='0'){
+                    printf("");
+                    getchar();
+                    fflush(stdin);
                 }else{
                     printf("Opcao invalida!");
                     getchar();
@@ -46,6 +50,10 @@ int main(void){
                     atualizar_funcionarios();
                 }else if(op2=='5'){
                     deletar_funcionarios();
+                }else if(op2=='0'){
+                    printf("");
+                    getchar();
+                    fflush(stdin);
                 }else{
                     printf("Opcao invalida!");
                     getchar();
@@ -66,6 +74,10 @@ int main(void){
                     atualizar_quartos();
                 }else if(op2=='5'){
                     deletar_quartos();
+                }else if(op2=='0'){
+                    printf("");
+                    getchar();
+                    fflush(stdin);
                 }else{
                     printf("Opcao invalida!");
                     getchar();
@@ -84,6 +96,10 @@ int main(void){
                     buscar_cin();
                 }else if(op2=='4'){
                     buscar_cout();
+                }else if(op2=='0'){
+                    printf("");
+                    getchar();
+                    fflush(stdin);
                 }else{
                     printf("Opcao invalida!");
                     getchar();
@@ -102,6 +118,10 @@ int main(void){
                     listar_checkoutT();
                 }else if(op2=='4'){
                     precos();
+                }else if(op2=='0'){
+                    printf("");
+                    getchar();
+                    fflush(stdin);
                 }else{
                     printf("Opcao invalida!");
                     getchar();
