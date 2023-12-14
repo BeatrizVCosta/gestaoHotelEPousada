@@ -179,10 +179,6 @@ void att_quarto(char *numero){
     printf("\tNenhum quarto cadastrado!");
     return;
   }
-  if (fq==NULL){
-    printf("\tNenhum quarto cadastrado!");
-    return;
-  }
   while (fread(qua, sizeof(Quarto), 1, fq)) {
     if ((strcmp(qua->numero, numero) == 0) && (qua->status == 'A')){
       encontra=1;
@@ -201,21 +197,21 @@ void att_quarto(char *numero){
           printf("|                Digite [0] para sair                                  |\n");
           printf("------------------------------------------------------------------------\n");
           printf("\t\tConfirmar:");
-          fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:
               ler_tipo(qua->tipo);
               printf("\t\tTipo atualizado com sucesso!");
-              printf("\t\nDigite enter para continuar...");getchar();
+              printf("\t\nDigite enter para continuar...");getchar();fflush(stdin);
               break;
             case 0:
               esc=0;
               break;
             default:
               printf("\t\nOpção Invalida!\n");
-              printf("\tDigite enter para continuar...");getchar(); 
+              printf("\tDigite enter para continuar...");getchar();fflush(stdin);
               break;
             }
             fseek(fq, -1 * (long)sizeof(Quarto), SEEK_CUR);
@@ -279,6 +275,7 @@ void delete_quarto(char *numero){
           printf("\t\tConfirmar:");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:

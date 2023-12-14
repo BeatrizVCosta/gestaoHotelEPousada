@@ -32,6 +32,8 @@ char atendimento(){
     printf("------------------------------------------------------------------------\n");
     printf("\t\t\tDigite sua escolha:  ");
     scanf("%c", &op2);
+    getchar();
+    fflush(stdin);
     printf("------------------------------------------------------------------------\n");
     return op2;
 }
@@ -320,6 +322,7 @@ void delete_atendimento(char *cpf, char*nome){
           printf("\t\tConfirmar:");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:

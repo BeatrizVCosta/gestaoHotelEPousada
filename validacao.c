@@ -49,6 +49,8 @@ int ler_diaria(void){
     printf("\tDigite o numero de diarias:  ");
     fflush(stdin);
     scanf("%d", &diaria);
+    getchar();
+    fflush(stdin);
     return diaria;
 }
 
@@ -78,6 +80,7 @@ void ler_tipo(char* tipo){
         printf("\tDigite o tipo do quarto(1/2/3):");
         fflush(stdin);
         scanf("%[^\n]",tipo);
+        getchar();
         fflush(stdin);
         t=verifica_tipo(tipo);
         if (t==1){
@@ -234,6 +237,8 @@ void ler_cpf(char cpf[]) {
     while (v) {
         printf("\tDigite o CPF: ");
         scanf("%s", cpf);
+        getchar();
+        fflush(stdin);
         c = validarCPF(cpf);
         if (c == 1) {
             v=f;

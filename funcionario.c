@@ -214,6 +214,7 @@ void att_funcionario(char *nome){
           printf("\t\tConfirmar:");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:
@@ -294,6 +295,7 @@ void delete_funcionario(char *nome){
           printf("\t\tConfirmar:");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:

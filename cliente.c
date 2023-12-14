@@ -235,6 +235,7 @@ void delete_cliente(char *nome){
           printf("\t\tConfirmar:");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:
@@ -294,6 +295,7 @@ void att_cliente(char *nome){
           printf("O que deseja fazer?");
           fflush(stdin);
           scanf("%d",&esc);
+          getchar();
           fflush(stdin);
           switch (esc){
             case 1:
